@@ -7,10 +7,6 @@
 {% endblock %}
 
 {% block body %}
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success"> {{ flashMessage }} </div>
-    {% endfor %}
-
     <div class="actions-right">
         <a href="{{ path('dywee_address_admin_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
         <button class="btn btn-default">Chercher</button>
@@ -56,7 +52,7 @@
                 <td>{{ address.cityString }}</td>
                 <td>{{ address.country.name}}</td>
                 <td>{{ address.mobile }}</td>
-                <td> <a href="{{ path('dywee_address_admin_view', {id: address.id}) }}" class="link-unstyled" target="_blank"><i class="fa fa-eye"></i> </a>
+                <td> <a href="{{ path('dywee_address_admin_view', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-eye"></i> </a>
                         <a href="{{ path('dywee_address_admin_update', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-pencil"></i> </a>
                         <a href="{{ path('dywee_address_admin_delete', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-trash-o"></i> </a>
                     
