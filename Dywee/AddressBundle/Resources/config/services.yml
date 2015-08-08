@@ -1,0 +1,4 @@
+services:
+#    dywee_address.example:
+#        class: Dywee\AddressBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

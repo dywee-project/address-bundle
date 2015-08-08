@@ -1,0 +1,26 @@
+{# Dywee\EshopBundle\Resources\View\Eshop\view.html.twig #}
+
+{%  extends "DyweeAddressBundle::admin.html.twig" %}
+
+{% block viewBody %}
+    <h1>Coup d'oeil sur une adresse</h1>
+    <div class="col-md-6 well">
+        <p>{% if address.companyName != '' %}{{ address.companyName }}<br>{% endif %}
+            {{ address.firstName }} {{ address.lastName }}<br>
+            {{ address.email }}<br>
+            {{ address.mobile }}</p>
+
+        <p>{{ address.address1 }}<br>
+            {{ address.zip }} - {{ address.cityString }}<br>
+            {{ address.country.name }}</p>
+    </div>
+    <div class="col-md-6">
+        <p>Commande(s) liée(s)</p>
+        <ul>
+            {% for order in orders %}
+                <li><a href="{{ path('dywee_order_view', { id: order.id }) }}">#{{ order.id }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
