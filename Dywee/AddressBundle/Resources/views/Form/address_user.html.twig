@@ -10,7 +10,7 @@
     {{ form_label(form.companyName, "Compagnie") }}
     {{ form_errors(form.companyName) }}
     <div class="col-md-8">
-        {{ form_widget(form.companyName) }}
+        {{ form_widget(form.companyName, {attr: {placeholder: "Société"}}) }}
     </div>
 </div>
 
@@ -18,7 +18,7 @@
     {{ form_label(form.lastName, "Nom") }}
     {{ form_errors(form.lastName) }}
     <div class="col-md-8">
-        {{ form_widget(form.lastName) }}
+        {{ form_widget(form.lastName, {attr: {placeholder: "Votre nom"}}) }}
     </div>
 </div>
 
@@ -26,7 +26,7 @@
     {{ form_label(form.firstName, "Prénom") }}
     {{ form_errors(form.firstName) }}
     <div class="col-md-8">
-        {{ form_widget(form.firstName) }}
+        {{ form_widget(form.firstName, {attr: {placeholder: "Votre prénom"}}) }}
     </div>
 </div>
 
@@ -34,7 +34,7 @@
     {{ form_label(form.email, "Email") }}
     {{ form_errors(form.email) }}
     <div class="col-md-8">
-        {{ form_widget(form.email) }}
+        {{ form_widget(form.email, {attr: {placeholder: "Votre email"}}) }}
     </div>
 </div>
 
@@ -42,7 +42,7 @@
     {{ form_label(form.mobile, "Mobile") }}
     {{ form_errors(form.mobile) }}
     <div class="col-md-8">
-        {{ form_widget(form.mobile) }}
+        {{ form_widget(form.mobile, {attr: {placeholder: "Votre numéro de téléphone"}}) }}
     </div>
 </div>
 
@@ -50,15 +50,15 @@
     {{ form_label(form.address1, "Adresse") }}
     {{ form_errors(form.address1) }}
     <div class="col-md-8">
-        {{ form_widget(form.address1) }}
+        {{ form_widget(form.address1, {attr: {placeholder: "Votre adresse"}}) }}
     </div>
 </div>
 
 <div class="form-group">
-    {{ form_label(form.address2, "cplt adresse") }}
+    {{ form_label(form.address2, "Complément d'adresse") }}
     {{ form_errors(form.address2) }}
     <div class="col-md-8">
-        {{ form_widget(form.address2) }}
+        {{ form_widget(form.address2, {attr: {placeholder: "Complément d'adresse"}}) }}
     </div>
 </div>
 
@@ -66,7 +66,7 @@
     {{ form_label(form.zip, "Code postal") }}
     {{ form_errors(form.zip) }}
     <div class="col-md-2">
-        {{ form_widget(form.zip) }}
+        {{ form_widget(form.zip, {attr: {placeholder: "Votre code postal"}}) }}
     </div>
 </div>
 
@@ -74,7 +74,7 @@
     {{ form_label(form.cityString, "Ville") }}
     {{ form_errors(form.cityString) }}
     <div class="col-md-8">
-        {{ form_widget(form.cityString) }}
+        {{ form_widget(form.cityString, {attr: {placeholder: "Votre ville"}}) }}
     </div>
 </div>
 

@@ -1,13 +1,15 @@
 {# Dywee\AddressBundle\Resources\View\User\edit.html.twig #}
 
-{%  extends "DyweeAddressBundle::layout.html.twig" %}
+{%  extends "DyweeAddressBundle::userAdmin.html.twig" %}
 
 {% block title %}
     Modification d'une adresse {{ parent() }}
 {% endblock %}
 
-{% block body %}
-    <h1>Modification d'une adresse</h1>
+{% block viewBody %}
+    <div class="title-heading">
+        <h1>Modification d'une adresse</h1>
+    </div>
 
     {% include "DyweeAddressBundle:Form:address.html.twig" %}
 {% endblock %}

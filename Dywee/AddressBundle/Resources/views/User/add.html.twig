@@ -1,13 +1,15 @@
 {# Dywee\AddressBundle\Resources\View\User\add.html.twig #}
 
-{%  extends "DyweeAddressBundle::layout.html.twig" %}
+{%  extends "DyweeAddressBundle::userAdmin.html.twig" %}
 
 {% block title %}
     Création d'une adresse {{ parent() }}
 {% endblock %}
 
-{% block bodyContent %}
-    <h1>Création d'une adresse</h1>
+{% block viewBody %}
+    <div class="title-heading">
+        <h1>Création d'une adresse</h1>
+    </div>
 
     {% include "DyweeAddressBundle:Form:address_user.html.twig" %}
 {% endblock %}
