@@ -12,18 +12,35 @@ use Doctrine\ORM\EntityRepository;
  */
 class AddressRepository extends EntityRepository
 {
-    public function findAllForPagination()
+    public function findAllForPagination($website)
     {
-        $qb = $this->createQueryBuilder('a');
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.website = :website')
+            ->setParameter('website', $website)
+            ;
 
         return $qb;
     }
 
-    public function getByRecent()
+    public function getByRecent($website)
     {
         return $this
             ->createQueryBuilder('a')
             ->orderBy('a.id', 'desc')
+            ->where('a.website = :website')
+            ->setParameter('website', $website)
             ;
+    }
+
+    public function getSelectList($website)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.website = :website')
+            ->setParameter('website', $website)
+            ->orderBy('a.lastName', 'asc')
+        ;
+
+        return $qb;
     }
 }

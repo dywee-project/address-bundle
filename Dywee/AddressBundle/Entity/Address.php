@@ -136,6 +136,11 @@ class Address
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Dywee\WebsiteBundle\Entity\Website")
+     */
+    private $website;
+
 
     /**
      * Get id
@@ -540,6 +545,29 @@ class Address
 
     public function getFormValue()
     {
-        return $this->getFirstName().' '.$this->getLastName();
+        return $this->getLastName().' '.$this->getFirstName();
+    }
+
+    /**
+     * Set website
+     *
+     * @param \Dywee\WebsiteBundle\Entity\Website $website
+     * @return Address
+     */
+    public function setWebsite(\Dywee\WebsiteBundle\Entity\Website $website = null)
+    {
+        $this->website = $website;
+
+        return $this;
+    }
+
+    /**
+     * Get website
+     *
+     * @return \Dywee\WebsiteBundle\Entity\Website 
+     */
+    public function getWebsite()
+    {
+        return $this->website;
     }
 }

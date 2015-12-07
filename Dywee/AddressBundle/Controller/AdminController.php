@@ -13,9 +13,12 @@ class AdminController extends Controller
 {
     public function tableAction(Request $request)
     {
-        $ar = $this->getDoctrine()->getManager()->getRepository('DyweeAddressBundle:Address');
+        $em = $this->getDoctrine()->getManager();
+        $ar = $em->getRepository('DyweeAddressBundle:Address');
+        $websiteRepository = $em->getRepository('DyweeWebsiteBundle:Website');
+        $website = $websiteRepository->findOneById($this->get('session')->get('activeWebsite'));
 
-        $query = $ar->FindAllForPagination();
+        $query = $ar->FindAllForPagination($website);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -29,6 +32,9 @@ class AdminController extends Controller
 
     public function viewAction(Address $address)
     {
+        if($address->getWebsite()->getId() != $this->get('session')->get('activeWebsite')->getId())
+            throw $this->createNotFoundException('Cette adresse est introuvable');
+
         $em = $this->getDoctrine()->getManager();
         $or = $em->getRepository('DyweeOrderBundle:BaseOrder');
 
@@ -50,6 +56,12 @@ class AdminController extends Controller
         if($form->handleRequest($request)->isValid())
         {
             $em = $this->getDoctrine()->getManager();
+
+            $websiteRepository = $em->getRepository('DyweeWebsiteBundle:Website');
+            $website = $websiteRepository->findOneById($this->get('session')->get('activeWebsite'));
+
+            $address->setWebsite($website);
+
             $em->persist($address);
             $em->flush();
 
@@ -60,10 +72,12 @@ class AdminController extends Controller
 
     public function updateAction(Address $address, Request $request)
     {
+        if($address->getWebsite()->getId() != $this->get('session')->get('activeWebsite')->getId())
+            throw $this->createNotFoundException('Cette adresse est introuvable');
+
         $form = $this->get('form.factory')->create(new AddressType(), $address);
 
-        if($form->handleRequest($request)->isValid())
-        {
+        if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -74,10 +88,14 @@ class AdminController extends Controller
         }
 
         return $this->render('DyweeAddressBundle:Admin:edit.html.twig', array('address' => $address, 'form' => $form->createView()));
+
     }
 
     public function deleteAction(Address $address)
     {
+        if($address->getWebsite()->getId() != $this->get('session')->get('activeWebsite')->getId())
+            throw $this->createNotFoundException('Cette adresse est introuvable');
+
         $em = $this->getDoctrine()->getManager();
 
         $em->remove($address);

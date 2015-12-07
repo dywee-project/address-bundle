@@ -51,7 +51,7 @@
                 <td>{{ address.address1 }}</td>
                 <td>{{ address.cityString }}</td>
                 <td>{{ address.country.name}}</td>
-                <td>{{ address.mobile }}</td>
+                <td>{{ phone_number_format(address.mobile) }}</td>
                 <td> <a href="{{ path('dywee_address_admin_view', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-eye"></i> </a>
                         <a href="{{ path('dywee_address_admin_update', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-pencil"></i> </a>
                         <a href="{{ path('dywee_address_admin_delete', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-trash-o"></i> </a>
