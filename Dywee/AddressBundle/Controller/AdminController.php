@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdminController extends Controller
 {
+	//un test
     public function tableAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
