@@ -19,5 +19,6 @@
     "psr-0": {
       "Dywee\\AddressBundle": ""
     }
-  }
+  },
+  "target-dir": ""
 }
