@@ -5,12 +5,3 @@
 {% block title %}
     News {{ parent() }}
 {% endblock %}
-
-{% block body %}
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success"> {{ flashMessage }} </div>
-    {% endfor %}
-
-    {% block viewBody %}
-    {% endblock %}
-{% endblock %}
