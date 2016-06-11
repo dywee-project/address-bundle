@@ -1,0 +1,23 @@
+{# Dywee\AddressBundle:SuperAdmin:table.html.twig #}
+
+{%  extends "DyweeAddressBundle::admin.html.twig" %}
+
+{% block title %}
+    Liste des adresses {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <a href="{{ path('superAdmin_address_add') }}" class="btn btn-success action-right"><i class="fa fa-plus"></i> Ajouter une adresse</a>
+    <div class="title-heading">
+        <h1>Liste des adresses</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-default">
+                {% include "DyweeAddressBundle:SuperAdmin:miniTable.html.twig" %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

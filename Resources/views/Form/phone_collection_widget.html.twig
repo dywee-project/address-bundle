@@ -1,0 +1,42 @@
+{% block collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+        {% endif %}
+        {{ form_errors(form) }}
+
+        <div {{ block('widget_container_attributes') }}>
+            {% for rows in form %}
+                <div class="form-group form-inline col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i> </span>
+                            {{ form_widget(rows.phone_number) }}
+
+                            <div class="input-group-btn">
+                                {{ form_widget(rows.owner) }}
+                            </div>
+                            <span class="input-group-btn action-delete"></span>
+                        </div>
+                        {{ form_errors(rows.phone_number) }}
+                </div>
+            {% endfor %}
+        </div>
+
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+    {% spaceless %}
+        <div class="form-group form-inline col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone"></i> </span>
+                    {{ form_widget(prototype.phone_number, { 'attr': { value: '+32 ' }}) }}
+                    <div class="input-group-btn">
+                        {{ form_widget(prototype.owner) }}
+                    </div>
+                    <span class="input-group-btn action-delete"></span>
+                </div>
+        </div>
+    {% endspaceless %}
+{% endblock collection_item_widget %}

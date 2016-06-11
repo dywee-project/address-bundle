@@ -2,10 +2,11 @@
 
 namespace Dywee\AddressBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use libphonenumber\PhoneNumberFormat;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AddressType extends AbstractType
 {
@@ -16,21 +17,25 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('companyName',    'text', array('required' => false))
-            ->add('firstName',      'text')
-            ->add('lastName',       'text')
-            ->add('email',          'email')
-            ->add('address1',       'text')
-            ->add('address2',       'text', array('required' => false))
-            ->add('mobile',         'tel')
-            ->add('zip',            'text')
-            ->add('cityString',     'text')
-            ->add('country',      'entity', array(
-                'class' => 'DyweeAddressBundle:Country',
-                'property' => 'name'
-                )
-            )
-            ->add('save',      'submit')
+            ->add('line1',          null,               array(
+                'label' => 'Rue'
+            ))
+            ->add('number',         TextType::class,    array(
+                'label' => 'Numéro'
+            ))
+            ->add('box',            TextType::class,    array(
+                'label' => 'Boite',
+                'required' => false
+            ))
+            //->add('line2',          TextType::class, array('required' => false))
+            //->add('other',          TextType::class, array('required' => false))
+            //->add('instruction',    TextType::class, array('required' => false))
+            ->add('city', EntityType::class, array(
+                'class' => 'DyweeAddressBundle:City',
+                'choice_label' => 'zipName',
+                'attr' => array('class' => 'select2'),
+                'label' => 'Ville'
+            ))
         ;
     }
     
@@ -42,13 +47,5 @@ class AddressType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Dywee\AddressBundle\Entity\Address'
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'dywee_addressbundle_address';
     }
 }

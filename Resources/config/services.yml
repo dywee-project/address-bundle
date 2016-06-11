@@ -1,4 +1,5 @@
 services:
-#    dywee_address.example:
-#        class: Dywee\AddressBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    address_bundle.datatable.address:
+        class: AddressBundle\Datatables\AddressDatatable
+        tags:
+            - { name: sg.datatable.view }

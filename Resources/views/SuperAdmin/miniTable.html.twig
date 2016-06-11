@@ -1,0 +1,30 @@
+{# Dywee\AddressBundle:SuperAdmin:miniTable.html.twig #}
+
+{% if addressList|length > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for address in addressList %}
+                <tr>
+                    <td>{{ address.id }}</td>
+                    <td>
+                        <a href="{{ path('superAdmin_address_view', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-eye"></i> </a>
+                        <a href="{{ path('superAdmin_address_update', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-pencil"></i> </a>
+                        <a href="{{ path('superAdmin_address_delete', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-trash"></i> </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="box-body">
+        <p>Il n'y a pas encore d'adresses créées</p>
+        <p><a href="{{ path('superAdmin_address_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une adresse</a></p>
+    </div>
+{% endif %}

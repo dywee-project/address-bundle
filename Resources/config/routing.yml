@@ -1,51 +1,57 @@
-dywee_address_admin_table:
-    path:     /admin6833/address/table
-    defaults: { _controller: DyweeAddressBundle:Admin:table }
+##############################
+#           USER             #
+##############################
 
-dywee_address_admin_add:
-    path:     /admin6833/address/add
-    defaults: { _controller: DyweeAddressBundle:Admin:add }
 
-dywee_address_admin_view:
-    path:     /admin6833/address/view/{id}
-    defaults: { _controller: DyweeAddressBundle:Admin:view }
+##############################
+#           ADMIN            #
+##############################
+
+
+##############################
+#        SUPER ADMIN         #
+##############################
+
+superAdmin_address_table:
+    path:   admin6833/address/table
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:table}
+
+superAdmin_address_view:
+    path:   admin6833/address/{id}
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:view}
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+superAdmin_address_add:
+    path:   admin6833/address/add
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:add}
+
+superAdmin_address_update:
+    path:   admin6833/address/{id}/update
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:update}
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+superAdmin_address_delete:
+    path:   admin6833/address/{id}/delete
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:delete}
     requirements:
         id: \d+
 
-dywee_address_admin_update:
-    path:     /admin6833/address/update/{id}
-    defaults: { _controller: DyweeAddressBundle:Admin:update }
-    requirements:
-            id: \d+
-
-dywee_address_admin_delete:
-    path:     /admin6833/address/delete/{id}
-    defaults: { _controller: DyweeAddressBundle:Admin:delete }
-    requirements:
-            id: \d+
-
-dywee_address_user_table:
-    path:     /admin/address/table
-    defaults: { _controller: DyweeAddressBundle:User:table }
-
-dywee_address_user_add:
-    path:     /admin/address/add
-    defaults: { _controller: DyweeAddressBundle:User:add }
-
-dywee_address_user_view:
-    path:     /admin/address/view/{id}
-    defaults: { _controller: DyweeAddressBundle:User:view }
+superAdmin_address_json:
+    path:   admin6833/address/json/{id}
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:json, id: null}
+    options:
+        expose: true
     requirements:
         id: \d+
 
-dywee_address_user_update:
-    path:     /admin/address/update/{id}
-    defaults: { _controller: DyweeAddressBundle:User:update }
-    requirements:
-            id: \d+
-
-dywee_address_user_delete:
-    path:     /admin/address/delete/{id}
-    defaults: { _controller: DyweeAddressBundle:User:delete }
-    requirements:
-            id: \d+
+superAdmin_address_test_response:
+    path:   admin6833/test1/response
+    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:indexResults}
+    options:
+        expose: true

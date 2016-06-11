@@ -7,13 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * City
  *
- * @ORM\Table(name="cities")
- * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Entity\CityRepository")
+ * @ORM\Table(name="city")
+ * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\CityRepository")
  */
 class City
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,22 +31,34 @@ class City
     /**
      * @var string
      *
-     * @ORM\Column(name="zip", type="string", length=255)
+     * @ORM\Column(name="zip", type="string", length=10)
      */
     private $zip;
 
     /**
-     * @var string
+     * @var float
      *
-     * @ORM\Column(name="state", type="string", length=255)
+     * @ORM\Column(name="latitude", type="float")
      */
-    private $state;
+    private $latitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="longitude", type="float")
+     */
+    private $longitude;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="cities")
+     */
+    private $country;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -57,6 +69,7 @@ class City
      * Set name
      *
      * @param string $name
+     *
      * @return City
      */
     public function setName($name)
@@ -69,7 +82,7 @@ class City
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -80,6 +93,7 @@ class City
      * Set zip
      *
      * @param string $zip
+     *
      * @return City
      */
     public function setZip($zip)
@@ -92,7 +106,7 @@ class City
     /**
      * Get zip
      *
-     * @return string 
+     * @return string
      */
     public function getZip()
     {
@@ -100,25 +114,79 @@ class City
     }
 
     /**
-     * Set state
+     * Set latitude
      *
-     * @param string $state
+     * @param float $latitude
+     *
      * @return City
      */
-    public function setState($state)
+    public function setLatitude($latitude)
     {
-        $this->state = $state;
+        $this->latitude = $latitude;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get latitude
      *
-     * @return string 
+     * @return float
      */
-    public function getState()
+    public function getLatitude()
     {
-        return $this->state;
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param float $longitude
+     *
+     * @return City
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Dywee\AddressBundle\Entity\Country $country
+     *
+     * @return City
+     */
+    public function setCountry(\Dywee\AddressBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Dywee\AddressBundle\Entity\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function getZipName()
+    {
+        return $this->getZip().' - '.$this->getName();
     }
 }

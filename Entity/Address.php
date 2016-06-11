@@ -3,18 +3,17 @@
 namespace Dywee\AddressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Address
  *
- * @ORM\Table(name="addresses")
- * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Entity\AddressRepository")
+ * @ORM\Table(name="address")
+ * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\AddressRepository")
  */
 class Address
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,54 +23,66 @@ class Address
 
     /**
      * @var string
-     * @ORM\Column(name="addressName", type="string", length=255, nullable=true)
-     * @Assert\DateTime()
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $addressName;
-
-    /**
-     * @var string
-     * @ORM\Column(name="companyName", type="string", length=255, nullable=true)
-     */
-    private $companyName;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
-     * @Assert\Length(min=2)
+     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     */
+    private $company;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
-     * @ORM\Column(name="lastName", type="string", length=255)
-     * @Assert\Length(min=2)
-     */
+     *
+     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+*/
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="line1", type="string", length=255, nullable=true)
      */
-    private $email;
+    private $line1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address1", type="string", length=255)
-     * @Assert\Length(min=2, max=32)
+     * @ORM\Column(name="line2", type="string", length=255, nullable=true)
      */
-    private $address1;
+    private $line2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="address2", type="string", length=255, nullable=true)
-     * @Assert\Length(min=2, max=32)
+     * @ORM\Column(name="number", type="string", length=255, nullable=true)
      */
-    private $address2;
+    private $number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="boite", type="string", length=255, nullable=true)
+     */
+    private $box;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="line3", type="string", length=255, nullable=true)
+     */
+    private $line3;
 
     /**
      * @var string
@@ -83,69 +94,20 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="phone_number", nullable=true)
+     * @ORM\Column(name="instruction", type="text", nullable=true)
      */
-    private $phone;
+    private $instruction;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mobile", type="phone_number", nullable=true)
+     * @ORM\ManyToOne(targetEntity="City")
      */
-    private $mobile;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="state", type="smallint", nullable=true)
-     */
-    private $state;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="zip", type="string", length=255)
-     */
-    private $zip;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="citystring", type="string", length=255)
-     */
-    private $cityString;
-
-    /**
-     * @var string
-     *
-     * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\Country", cascade={"persist"})
-     */
-    private $country;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=true)
-     *
-     */
-    private $user;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="type", type="smallint", nullable=true)
-     */
-    private $type;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Dywee\WebsiteBundle\Entity\Website")
-     */
-    private $website;
+    private $city;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -153,55 +115,58 @@ class Address
     }
 
     /**
-     * Set addressName
+     * Set name
      *
-     * @param string $addressName
+     * @param string $name
+     *
      * @return Address
      */
-    public function setAddressName($addressName)
+    public function setName($name)
     {
-        $this->addressName = $addressName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get addressName
+     * Get name
      *
-     * @return string 
+     * @return string
      */
-    public function getAddressName()
+    public function getName()
     {
-        return $this->addressName;
+        return $this->name;
     }
 
     /**
-     * Set companyName
+     * Set company
      *
-     * @param string $companyName
+     * @param string $company
+     *
      * @return Address
      */
-    public function setCompanyName($companyName)
+    public function setCompany($company)
     {
-        $this->companyName = $companyName;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * Get companyName
+     * Get company
      *
-     * @return string 
+     * @return string
      */
-    public function getCompanyName()
+    public function getCompany()
     {
-        return $this->companyName;
+        return $this->company;
     }
 
     /**
      * Set firstName
      *
      * @param string $firstName
+     *
      * @return Address
      */
     public function setFirstName($firstName)
@@ -214,7 +179,7 @@ class Address
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -225,6 +190,7 @@ class Address
      * Set lastName
      *
      * @param string $lastName
+     *
      * @return Address
      */
     public function setLastName($lastName)
@@ -237,7 +203,7 @@ class Address
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -245,78 +211,82 @@ class Address
     }
 
     /**
-     * Set email
+     * Set line1
      *
-     * @param string $email
+     * @param string $line1
+     *
      * @return Address
      */
-    public function setEmail($email)
+    public function setLine1($line1)
     {
-        $this->email = $email;
+        $this->line1 = $line1;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Get line1
      *
-     * @return string 
+     * @return string
      */
-    public function getEmail()
+    public function getLine1()
     {
-        return $this->email;
+        return $this->line1;
     }
 
     /**
-     * Set address1
+     * Set line2
      *
-     * @param string $address1
+     * @param string $line2
+     *
      * @return Address
      */
-    public function setAddress1($address1)
+    public function setLine2($line2)
     {
-        $this->address1 = $address1;
+        $this->line2 = $line2;
 
         return $this;
     }
 
     /**
-     * Get address1
+     * Get line2
      *
-     * @return string 
+     * @return string
      */
-    public function getAddress1()
+    public function getLine2()
     {
-        return $this->address1;
+        return $this->line2;
     }
 
     /**
-     * Set address2
+     * Set line3
      *
-     * @param string $address2
+     * @param string $line3
+     *
      * @return Address
      */
-    public function setAddress2($address2)
+    public function setLine3($line3)
     {
-        $this->address2 = $address2;
+        $this->line3 = $line3;
 
         return $this;
     }
 
     /**
-     * Get address2
+     * Get line3
      *
-     * @return string 
+     * @return string
      */
-    public function getAddress2()
+    public function getLine3()
     {
-        return $this->address2;
+        return $this->line3;
     }
 
     /**
      * Set other
      *
      * @param string $other
+     *
      * @return Address
      */
     public function setOther($other)
@@ -329,7 +299,7 @@ class Address
     /**
      * Get other
      *
-     * @return string 
+     * @return string
      */
     public function getOther()
     {
@@ -337,237 +307,98 @@ class Address
     }
 
     /**
-     * Set phone
+     * Set instruction
      *
-     * @param string $phone
+     * @param string $instruction
+     *
      * @return Address
      */
-    public function setPhone($phone)
+    public function setInstruction($instruction)
     {
-        $this->phone = $phone;
+        $this->instruction = $instruction;
 
         return $this;
     }
 
     /**
-     * Get phone
+     * Get instruction
      *
-     * @return string 
+     * @return string
      */
-    public function getPhone()
+    public function getInstruction()
     {
-        return $this->phone;
+        return $this->instruction;
     }
 
     /**
-     * Set mobile
+     * Set city
      *
-     * @param string $mobile
+     * @param \Dywee\AddressBundle\Entity\City $city
+     *
      * @return Address
      */
-    public function setMobile($mobile)
+    public function setCity(\Dywee\AddressBundle\Entity\City $city = null)
     {
-        $this->mobile = $mobile;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get mobile
+     * Get city
      *
-     * @return string 
+     * @return \Dywee\AddressBundle\Entity\City
      */
-    public function getMobile()
+    public function getCity()
     {
-        return $this->mobile;
+        return $this->city;
     }
 
     /**
-     * Set state
+     * Set number
      *
-     * @param integer $state
+     * @param string $number
+     *
      * @return Address
      */
-    public function setState($state)
+    public function setNumber($number)
     {
-        $this->state = $state;
+        $this->number = $number;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get number
      *
-     * @return integer 
+     * @return string
      */
-    public function getState()
+    public function getNumber()
     {
-        return $this->state;
+        return $this->number;
     }
 
     /**
-     * Set zip
+     * Set box
      *
-     * @param integer $zip
+     * @param string $box
+     *
      * @return Address
      */
-    public function setZip($zip)
+    public function setBox($box)
     {
-        $this->zip = $zip;
+        $this->box = $box;
 
         return $this;
     }
 
     /**
-     * Get zip
+     * Get box
      *
-     * @return integer 
+     * @return string
      */
-    public function getZip()
+    public function getBox()
     {
-        return $this->zip;
-    }
-
-    /**
-     * Set cityString
-     *
-     * @param string $cityString
-     * @return Address
-     */
-    public function setCityString($cityString)
-    {
-        $this->cityString = $cityString;
-
-        return $this;
-    }
-
-    /**
-     * Get cityString
-     *
-     * @return string 
-     */
-    public function getCityString()
-    {
-        return $this->cityString;
-    }
-
-    /**
-     * Set idCountry
-     *
-     * @param string $idCountry
-     * @return Address
-     */
-    public function setIdCountry($idCountry)
-    {
-        $this->idCountry = $idCountry;
-
-        return $this;
-    }
-
-    /**
-     * Get idCountry
-     *
-     * @return string 
-     */
-    public function getIdCountry()
-    {
-        return $this->idCountry;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \Dywee\UserBundle\Entity\User $user
-     * @return Address
-     */
-    public function setUser(\Dywee\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Dywee\UserBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $oldId
-     * @return Address
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set country
-     *
-     * @param \Dywee\AddressBundle\Entity\country $country
-     * @return Address
-     */
-    public function setCountry(\Dywee\AddressBundle\Entity\country $country = null)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return \Dywee\AddressBundle\Entity\country
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    public function getFormValue()
-    {
-        return $this->getLastName().' '.$this->getFirstName();
-    }
-
-    /**
-     * Set website
-     *
-     * @param \Dywee\WebsiteBundle\Entity\Website $website
-     * @return Address
-     */
-    public function setWebsite(\Dywee\WebsiteBundle\Entity\Website $website = null)
-    {
-        $this->website = $website;
-
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return \Dywee\WebsiteBundle\Entity\Website 
-     */
-    public function getWebsite()
-    {
-        return $this->website;
+        return $this->box;
     }
 }

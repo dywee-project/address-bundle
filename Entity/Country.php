@@ -7,13 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Country
  *
- * @ORM\Table(name="countries")
- * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Entity\CountryRepository")
+ * @ORM\Table(name="country")
+ * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\CountryRepository")
  */
 class Country
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,44 +24,48 @@ class Country
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="iso", type="string", length=255)
+     * @ORM\Column(name="iso", type="string", length=10, unique=true)
      */
     private $iso;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="state", type="string", length=255)
-     */
-    private $state;
-
-    /**
-     * @ORM\Column(name="vatRate", type="float")
+     * @ORM\Column(name="vatRate", type="decimal", precision=4, scale=2, nullable=true)
      */
     private $vatRate;
 
     /**
+     * @var int
+     *
      * @ORM\Column(name="phonePrefix", type="smallint")
      */
     private $phonePrefix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dywee\CurrencyBundle\Entity\Currency", inversedBy="countries")
+     * @ORM\OneToMany(targetEntity="City", mappedBy="country")
      */
-    private $defaultCurrency;
+    private $cities;
+
+    /**
+     * @ORM\OneToMany(targetEntity="UserBundle\Entity\User", mappedBy="nationality")
+     */
+    private $users;
+
+
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -72,6 +76,7 @@ class Country
      * Set name
      *
      * @param string $name
+     *
      * @return Country
      */
     public function setName($name)
@@ -84,7 +89,7 @@ class Country
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -95,6 +100,7 @@ class Country
      * Set iso
      *
      * @param string $iso
+     *
      * @return Country
      */
     public function setIso($iso)
@@ -107,7 +113,7 @@ class Country
     /**
      * Get iso
      *
-     * @return string 
+     * @return string
      */
     public function getIso()
     {
@@ -115,32 +121,10 @@ class Country
     }
 
     /**
-     * Set state
-     *
-     * @param string $state
-     * @return Country
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get state
-     *
-     * @return string 
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
      * Set vatRate
      *
-     * @param float $vatRate
+     * @param string $vatRate
+     *
      * @return Country
      */
     public function setVatRate($vatRate)
@@ -153,7 +137,7 @@ class Country
     /**
      * Get vatRate
      *
-     * @return float 
+     * @return string
      */
     public function getVatRate()
     {
@@ -164,6 +148,7 @@ class Country
      * Set phonePrefix
      *
      * @param integer $phonePrefix
+     *
      * @return Country
      */
     public function setPhonePrefix($phonePrefix)
@@ -176,33 +161,87 @@ class Country
     /**
      * Get phonePrefix
      *
-     * @return integer 
+     * @return int
      */
     public function getPhonePrefix()
     {
         return $this->phonePrefix;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set defaultCurrency
+     * Add city
      *
-     * @param \Dywee\CurrencyBundle\Entity\Currency $defaultCurrency
+     * @param \Dywee\AddressBundle\Entity\City $city
+     *
      * @return Country
      */
-    public function setDefaultCurrency(\Dywee\CurrencyBundle\Entity\Currency $defaultCurrency = null)
+    public function addCity(\Dywee\AddressBundle\Entity\City $city)
     {
-        $this->defaultCurrency = $defaultCurrency;
+        $this->cities[] = $city;
+        $city->setCountry($this);
 
         return $this;
     }
 
     /**
-     * Get defaultCurrency
+     * Remove city
      *
-     * @return \Dywee\CurrencyBundle\Entity\Currency 
+     * @param \Dywee\AddressBundle\Entity\City $city
      */
-    public function getDefaultCurrency()
+    public function removeCity(\Dywee\AddressBundle\Entity\City $city)
     {
-        return $this->defaultCurrency;
+        $this->cities->removeElement($city);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCities()
+    {
+        return $this->cities;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Country
+     */
+    public function addUser(\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+        $user->setNationality($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \UserBundle\Entity\User $user
+     */
+    public function removeUser(\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
