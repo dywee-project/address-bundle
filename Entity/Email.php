@@ -36,7 +36,7 @@ class Email
     private $isMain;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="emails")
+     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User", inversedBy="emails")
      */
     private $user;
 
@@ -102,11 +102,11 @@ class Email
     /**
      * Set user
      *
-     * @param \UserBundle\Entity\User $user
+     * @param \Dywee\UserBundle\Entity\User $user
      *
      * @return Email
      */
-    public function setUser(\UserBundle\Entity\User $user = null)
+    public function setUser(\Dywee\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -116,7 +116,7 @@ class Email
     /**
      * Get user
      *
-     * @return \UserBundle\Entity\User
+     * @return \Dywee\UserBundle\Entity\User
      */
     public function getUser()
     {

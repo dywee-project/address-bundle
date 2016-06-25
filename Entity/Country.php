@@ -54,12 +54,6 @@ class Country
      */
     private $cities;
 
-    /**
-     * @ORM\OneToMany(targetEntity="UserBundle\Entity\User", mappedBy="nationality")
-     */
-    private $users;
-
-
 
 
     /**
@@ -208,31 +202,6 @@ class Country
     public function getCities()
     {
         return $this->cities;
-    }
-
-    /**
-     * Add user
-     *
-     * @param \UserBundle\Entity\User $user
-     *
-     * @return Country
-     */
-    public function addUser(\UserBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-        $user->setNationality($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \UserBundle\Entity\User $user
-     */
-    public function removeUser(\UserBundle\Entity\User $user)
-    {
-        $this->users->removeElement($user);
     }
 
     /**

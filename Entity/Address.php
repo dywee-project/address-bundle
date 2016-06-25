@@ -2,7 +2,9 @@
 
 namespace Dywee\AddressBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Dywee\UserBundle\Entity\User;
 
 /**
  * Address
@@ -24,77 +26,77 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="company", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $company;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
 */
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="line1", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $line1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="line2", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $line2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="number", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $number;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="boite", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $box;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="line3", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $line3;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="other", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $other;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="instruction", type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $instruction;
 
@@ -102,6 +104,18 @@ class Address
      * @ORM\ManyToOne(targetEntity="City")
      */
     private $city;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Dywee\UserBundle\Entity\User")
+     */
+    private $users;
+
+
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
 
     /**
@@ -333,11 +347,11 @@ class Address
     /**
      * Set city
      *
-     * @param \Dywee\AddressBundle\Entity\City $city
+     * @param City $city
      *
      * @return Address
      */
-    public function setCity(\Dywee\AddressBundle\Entity\City $city = null)
+    public function setCity(City $city = null)
     {
         $this->city = $city;
 
@@ -347,7 +361,7 @@ class Address
     /**
      * Get city
      *
-     * @return \Dywee\AddressBundle\Entity\City
+     * @return City
      */
     public function getCity()
     {
@@ -400,5 +414,33 @@ class Address
     public function getBox()
     {
         return $this->box;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function addUser(User $user)
+    {
+        $this->users[] = $user;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function removeUser(User $user)
+    {
+        $this->users->removeElement($user);
+        return $this;
     }
 }

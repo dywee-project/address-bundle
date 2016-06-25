@@ -37,14 +37,7 @@ class PhoneNumber
     private $isMain = false;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="owner", type="string", length=225, nullable=true)
-     */
-    private $owner;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="phoneNumbers")
+     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User", inversedBy="phoneNumbers")
      */
     private $user;
 
@@ -59,17 +52,6 @@ class PhoneNumber
         return $this->id;
     }
 
-
-    public function getOwner()
-    {
-        return $this->owner;
-    }
-
-    public function setOwner($owner)
-    {
-        $this->owner = $owner;
-        return $this;
-    }
 
     /**
      * Set phoneNumber
@@ -122,11 +104,11 @@ class PhoneNumber
     /**
      * Set user
      *
-     * @param \UserBundle\Entity\User $user
+     * @param \Dywee\UserBundle\Entity\User $user
      *
      * @return PhoneNumber
      */
-    public function setUser(\UserBundle\Entity\User $user = null)
+    public function setUser(\Dywee\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -136,7 +118,7 @@ class PhoneNumber
     /**
      * Get user
      *
-     * @return \UserBundle\Entity\User
+     * @return \Dywee\UserBundle\Entity\User
      */
     public function getUser()
     {

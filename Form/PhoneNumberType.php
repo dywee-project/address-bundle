@@ -24,13 +24,6 @@ class PhoneNumberType extends AbstractType
                 'preferred_country_choices' => array('BE')
                 )/**/
             )
-            ->add('owner', null, [
-                "label" => "",
-                "required" => false,
-                "attr" => [
-                    "placeholder" => "Appartient à..."
-                ]
-            ])
         ;
     }
     
