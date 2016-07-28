@@ -55,7 +55,7 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 2;
+        return 1;
     }
 
     public function loadJson($fileName)

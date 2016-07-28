@@ -110,6 +110,11 @@ class Address
      */
     private $users;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\Address")
+     */
+    private $email;
+
 
 
     public function __construct()
@@ -443,4 +448,23 @@ class Address
         $this->users->removeElement($user);
         return $this;
     }
+
+    /**
+     * @param Email email
+     * @return $this
+     */
+    public function setEmail(Email $email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
 }

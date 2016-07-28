@@ -24,9 +24,9 @@ class Email
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255)
      */
-    private $address;
+    private $email;
 
     /**
      * @var bool
@@ -52,27 +52,27 @@ class Email
     }
 
     /**
-     * Set address
+     * Set email
      *
      * @param string $address
      *
      * @return Email
      */
-    public function setAddress($address)
+    public function setEmail($address)
     {
-        $this->address = strtolower($address);
+        $this->email = strtolower($address);
 
         return $this;
     }
 
     /**
-     * Get address
+     * Get email
      *
      * @return string
      */
-    public function getAddress()
+    public function getEmail()
     {
-        return $this->address;
+        return $this->email;
     }
 
     /**
