@@ -1,6 +1,7 @@
 <?php
 
 namespace Dywee\AddressBundle\Repository;
+use Dywee\UserBundle\Entity\User;
 
 /**
  * AddressRepository
@@ -10,4 +11,13 @@ namespace Dywee\AddressBundle\Repository;
  */
 class AddressRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAddressForUser(User $user)
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('a')
+            ->where('a.users = :user')
+            ->setParameter('user', $user);
+
+        return $qb->getQuery()->getResult();
+    }
 }
