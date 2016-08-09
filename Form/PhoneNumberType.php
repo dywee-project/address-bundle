@@ -17,12 +17,11 @@ class PhoneNumberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('phone_number', \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::class
-                /*, array(
-                'widget' => PhoneNumberType::WIDGET_COUNTRY_CHOICE,
-                'country_choices' => array('BE', 'FR'),
-                'preferred_country_choices' => array('BE')
-                )/**/
+            ->add('phone_number', \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::class, array(
+                    'widget' => \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::WIDGET_COUNTRY_CHOICE,
+                    'country_choices' => array('FR', 'BE'),
+                    'preferred_country_choices' => array('BE')
+                )
             )
         ;
     }

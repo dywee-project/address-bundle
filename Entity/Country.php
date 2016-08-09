@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="country")
  * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\CountryRepository")
  */
-class Country
+class Country implements CountryInterface
 {
     /**
      * @var int

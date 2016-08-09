@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\PhoneNumberRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class PhoneNumber
+class PhoneNumber implements PhoneNumberInterface
 {
     /**
      * @var int
@@ -36,11 +36,6 @@ class PhoneNumber
      */
     private $isMain = false;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User", inversedBy="phoneNumbers")
-     */
-    private $user;
-
 
     /**
      * Get id
@@ -58,7 +53,7 @@ class PhoneNumber
      *
      * @param phone_number $phoneNumber
      *
-     * @return PhoneNumber
+     * @return PhoneNumberInterface
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -82,7 +77,7 @@ class PhoneNumber
      *
      * @param boolean $isMain
      *
-     * @return PhoneNumber
+     * @return PhoneNumberInterface
      */
     public function setIsMain($isMain)
     {
@@ -101,30 +96,6 @@ class PhoneNumber
         return $this->isMain;
     }
 
-    /**
-     * Set user
-     *
-     * @param \Dywee\UserBundle\Entity\User $user
-     *
-     * @return PhoneNumber
-     */
-    public function setUser(\Dywee\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Dywee\UserBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
     protected $internationalPhoneNumber;
 
     /**
@@ -139,6 +110,7 @@ class PhoneNumber
 
     public function getInternationalPhoneNumber()
     {
-        return '+'.$this->getPhoneNumber()->getCountryCode().$this->getPhoneNumber()->getNationalNumber();;
+        return '+'.$this->getPhoneNumber()->getCountryCode().$this->getPhoneNumber()->getNationalNumber();
     }
+
 }

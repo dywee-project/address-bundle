@@ -24,21 +24,16 @@ class Email
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="isMain", type="boolean", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isMain;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User", inversedBy="emails")
-     */
-    private $user;
 
 
     /**
@@ -97,29 +92,5 @@ class Email
     public function getIsMain()
     {
         return $this->isMain;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \Dywee\UserBundle\Entity\User $user
-     *
-     * @return Email
-     */
-    public function setUser(\Dywee\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Dywee\UserBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

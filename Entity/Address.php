@@ -12,7 +12,7 @@ use Dywee\UserBundle\Entity\User;
  * @ORM\Table(name="address")
  * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\AddressRepository")
  */
-class Address
+class Address implements AddressInterface
 {
     /**
      * @var int
@@ -48,7 +48,7 @@ class Address
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
-*/
+     */
     private $lastName;
 
     /**
@@ -111,9 +111,14 @@ class Address
     private $users;
 
     /**
-     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\Address")
+     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\Email", cascade={"persist"})
      */
     private $email;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\PhoneNumber", cascade={"persist"})
+     */
+    private $phone;
 
 
 
@@ -124,9 +129,7 @@ class Address
 
 
     /**
-     * Get id
-     *
-     * @return int
+     * @inheritdoc
      */
     public function getId()
     {
@@ -134,11 +137,7 @@ class Address
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setName($name)
     {
@@ -148,9 +147,7 @@ class Address
     }
 
     /**
-     * Get name
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getName()
     {
@@ -158,11 +155,7 @@ class Address
     }
 
     /**
-     * Set company
-     *
-     * @param string $company
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setCompany($company)
     {
@@ -172,9 +165,7 @@ class Address
     }
 
     /**
-     * Get company
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getCompany()
     {
@@ -182,11 +173,7 @@ class Address
     }
 
     /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setFirstName($firstName)
     {
@@ -196,9 +183,7 @@ class Address
     }
 
     /**
-     * Get firstName
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getFirstName()
     {
@@ -206,11 +191,7 @@ class Address
     }
 
     /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setLastName($lastName)
     {
@@ -220,9 +201,7 @@ class Address
     }
 
     /**
-     * Get lastName
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getLastName()
     {
@@ -230,11 +209,7 @@ class Address
     }
 
     /**
-     * Set line1
-     *
-     * @param string $line1
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setLine1($line1)
     {
@@ -244,9 +219,7 @@ class Address
     }
 
     /**
-     * Get line1
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getLine1()
     {
@@ -254,11 +227,7 @@ class Address
     }
 
     /**
-     * Set line2
-     *
-     * @param string $line2
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setLine2($line2)
     {
@@ -268,9 +237,7 @@ class Address
     }
 
     /**
-     * Get line2
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getLine2()
     {
@@ -278,11 +245,7 @@ class Address
     }
 
     /**
-     * Set line3
-     *
-     * @param string $line3
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setLine3($line3)
     {
@@ -292,9 +255,7 @@ class Address
     }
 
     /**
-     * Get line3
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getLine3()
     {
@@ -302,11 +263,7 @@ class Address
     }
 
     /**
-     * Set other
-     *
-     * @param string $other
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setOther($other)
     {
@@ -316,9 +273,7 @@ class Address
     }
 
     /**
-     * Get other
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getOther()
     {
@@ -326,11 +281,7 @@ class Address
     }
 
     /**
-     * Set instruction
-     *
-     * @param string $instruction
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setInstruction($instruction)
     {
@@ -340,9 +291,7 @@ class Address
     }
 
     /**
-     * Get instruction
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getInstruction()
     {
@@ -350,13 +299,9 @@ class Address
     }
 
     /**
-     * Set city
-     *
-     * @param City $city
-     *
-     * @return Address
+     * @inheritdoc
      */
-    public function setCity(City $city = null)
+    public function setCity(CityInterface $city = null)
     {
         $this->city = $city;
 
@@ -364,9 +309,7 @@ class Address
     }
 
     /**
-     * Get city
-     *
-     * @return City
+     * @inheritdoc
      */
     public function getCity()
     {
@@ -374,11 +317,7 @@ class Address
     }
 
     /**
-     * Set number
-     *
-     * @param string $number
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setNumber($number)
     {
@@ -388,9 +327,7 @@ class Address
     }
 
     /**
-     * Get number
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getNumber()
     {
@@ -398,11 +335,7 @@ class Address
     }
 
     /**
-     * Set box
-     *
-     * @param string $box
-     *
-     * @return Address
+     * @inheritdoc
      */
     public function setBox($box)
     {
@@ -412,9 +345,7 @@ class Address
     }
 
     /**
-     * Get box
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getBox()
     {
@@ -422,8 +353,7 @@ class Address
     }
 
     /**
-     * @param User $user
-     * @return $this
+     * @inheritdoc
      */
     public function addUser(User $user)
     {
@@ -432,7 +362,7 @@ class Address
     }
 
     /**
-     * @return ArrayCollection
+     * @inheritdoc
      */
     public function getUsers()
     {
@@ -440,8 +370,7 @@ class Address
     }
 
     /**
-     * @param User $user
-     * @return $this
+     * @inheritdoc
      */
     public function removeUser(User $user)
     {
@@ -450,8 +379,7 @@ class Address
     }
 
     /**
-     * @param Email email
-     * @return $this
+     * @inheritdoc
      */
     public function setEmail(Email $email)
     {
@@ -460,11 +388,28 @@ class Address
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setPhone(PhoneNumberInterface $phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
 }

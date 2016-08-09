@@ -16,8 +16,8 @@ class EmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('address',    \Symfony\Component\Form\Extension\Core\Type\EmailType::class)
-            ->add('isMain',     CheckboxType::class,    array('required' => false))
+            ->add('email',    \Symfony\Component\Form\Extension\Core\Type\EmailType::class)
+            //->add('isMain',     CheckboxType::class,    array('required' => false))
         ;
     }
     
