@@ -106,7 +106,7 @@ class Address implements AddressInterface
     private $city;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Dywee\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User")
      */
     private $users;
 
@@ -410,6 +410,11 @@ class Address implements AddressInterface
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName(). ' ' . $this->getLastName() . ' - '. $this->getNumber() . ', ' . $this->getLine1() . ' - ' . ($this->getCity() ? $this->getCity()->getName() : '');
     }
 
 }

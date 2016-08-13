@@ -213,4 +213,6 @@ interface AddressInterface extends PersistableInterface
      */
     public function getPhone();
 
+    public function __toString();
+
 }

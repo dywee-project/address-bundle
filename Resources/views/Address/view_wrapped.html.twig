@@ -1,0 +1,18 @@
+<p>{% if address.company != '' %}{{ address.company }}<br>{% endif %}
+    {{ address.firstName }} {{ address.lastName }}<br>
+    {{ address.email.email }}<br>
+    {% if order.shippingAddress.phone is not null %}
+        {{ phone_number_format(address.phone.phoneNumber, 'NATIONAL') }}
+    {% endif %}
+</p>
+
+<p>{{ address.line1 }}, {{ address.number }}
+    {% if address.box is not null %}
+        - {{ 'address.box'|trans }}: {{ address.box }}<br>
+    {% endif %}
+    {% if order.shippingAddress.line2 != '' %}
+        {{ order.shippingAddress.line2 }}<br>
+    {% endif %}
+    {{ address.city.zipName }}<br>
+    {{ address.city.country.name }}
+</p>
