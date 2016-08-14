@@ -12,11 +12,11 @@
 #        SUPER ADMIN         #
 ##############################
 
-superAdmin_address_table:
+address_table:
     path:   admin6833/address/table
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:table}
 
-superAdmin_address_view:
+address_view:
     path:   admin6833/address/{id}
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:view}
     requirements:
@@ -24,11 +24,11 @@ superAdmin_address_view:
     options:
         expose: true
 
-superAdmin_address_add:
+address_add:
     path:   admin6833/address/add
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:add}
 
-superAdmin_address_update:
+address_update:
     path:   admin6833/address/{id}/update
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:update}
     requirements:
@@ -36,22 +36,16 @@ superAdmin_address_update:
     options:
         expose: true
 
-superAdmin_address_delete:
+address_delete:
     path:   admin6833/address/{id}/delete
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:delete}
     requirements:
         id: \d+
 
-superAdmin_address_json:
+address_json:
     path:   admin6833/address/json/{id}
     defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:json, id: null}
     options:
         expose: true
     requirements:
         id: \d+
-
-superAdmin_address_test_response:
-    path:   admin6833/test1/response
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:indexResults}
-    options:
-        expose: true

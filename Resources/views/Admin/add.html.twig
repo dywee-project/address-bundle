@@ -2,12 +2,18 @@
 
 {%  extends "DyweeAddressBundle::admin.html.twig" %}
 
-{% block title %}
+{% block metaTitle %}
     Création d'une adresse {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <h1>Création d'une adresse</h1>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Création d'une adresse</h1>
+        </div>
+        <div class="box-body">
+            {% include "DyweeAddressBundle:Admin:form.html.twig" %}
+        </div>
+    </div>
 
-    {% include "DyweeAddressBundle:Form:address.html.twig" %}
 {% endblock %}

@@ -1,2 +1,15 @@
 address:
-    box: 'Boite'
+    box: Boite
+
+    sidebar:
+        label: Gestion des adresses
+        table: Liste des adresses
+
+firstName: Prénom
+lastName: Nom
+company: Société
+phoneNumber: Numéro de téléphone
+number: Numéro
+line1: Adresse
+line2: Complément
+city: Ville

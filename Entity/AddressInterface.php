@@ -176,23 +176,6 @@ interface AddressInterface extends PersistableInterface
     public function getBox();
 
     /**
-     * @param User $user
-     * @return $this
-     */
-    public function addUser(User $user);
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getUsers();
-
-    /**
-     * @param User $user
-     * @return $this
-     */
-    public function removeUser(User $user);
-
-    /**
      * @param Email email
      * @return $this
      */

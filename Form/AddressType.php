@@ -4,6 +4,7 @@ namespace Dywee\AddressBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,25 +18,19 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('line1',          null,               array(
-                'label' => 'Rue'
+            ->add('firstName',      TextType::class)
+            ->add('lastName',       TextType::class)
+            ->add('number',         TextType::class)
+            ->add('box',            TextType::class, array('required' => false))
+            ->add('line1',          TextType::class)
+            ->add('line2',          TextType::class, array('required' => false))
+            ->add('city',           EntityType::class, array(
+                'class'         => 'DyweeAddressBundle:City',
+                'choice_label'  => 'zipName'
             ))
-            ->add('number',         TextType::class,    array(
-                'label' => 'Numéro'
-            ))
-            ->add('box',            TextType::class,    array(
-                'label' => 'Boite',
-                'required' => false
-            ))
-            //->add('line2',          TextType::class, array('required' => false))
-            //->add('other',          TextType::class, array('required' => false))
-            //->add('instruction',    TextType::class, array('required' => false))
-            ->add('city', EntityType::class, array(
-                'class' => 'DyweeAddressBundle:City',
-                'choice_label' => 'zipName',
-                'attr' => array('class' => 'select2'),
-                'label' => 'Ville'
-            ))
+            ->add('email',          EmailType::class)
+            ->add('phone',          PhoneNumberType::class)
+            ->add('save',           SubmitType::class)
         ;
     }
     

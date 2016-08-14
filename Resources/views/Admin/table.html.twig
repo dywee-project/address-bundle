@@ -2,19 +2,23 @@
 
 {%  extends "DyweeAddressBundle::admin.html.twig" %}
 
-{% block title %}
+{% block metaTitle %}
     Liste des adresses {{ parent() }}
 {% endblock %}
 
 {% block body %}
     <div class="actions-right">
-        <a href="{{ path('dywee_address_admin_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
+        <a href="{{ path('address_admin_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
         <button class="btn btn-default">Chercher</button>
     </div>
 
-    <div class="title-heading">
-        <h1 class="text-center">Liste des adresses</h1>
-    </div>
+    <section class="content-header">
+        <h1>Liste des adresses</h1>
+    </section>
+
+    <section class="">
+
+    </section>
     <table class="table table-striped table-hover table-condensed">
         <thead>
         <tr>
@@ -27,10 +31,10 @@
             <th{% if pagination.isSorted('a.lastName') %} class="sorted"{% endif %}>
                 {{ knp_pagination_sortable(pagination, 'Nom', 'a.lastName') }}
             </th>
-            <th{% if pagination.isSorted('a.address1') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Rue', 'a.address1') }}
+            <th{% if pagination.isSorted('a.line1') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Rue', 'a.line1') }}
             </th>
-            <th{% if pagination.isSorted('a.cityString') %} class="sorted"{% endif %}>
+            <th{% if pagination.isSorted('a.city') %} class="sorted"{% endif %}>
                 {{ knp_pagination_sortable(pagination, 'Ville', 'a.cityString') }}
             </th>
             <th{% if pagination.isSorted('a.country') %} class="sorted"{% endif %}>
@@ -45,16 +49,26 @@
         <tbody>
         {%  for address in pagination %}
             <tr>
-                <td>{{ address.id }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ address.firstName }}</td>
                 <td>{{ address.lastName }}</td>
-                <td>{{ address.address1 }}</td>
-                <td>{{ address.cityString }}</td>
-                <td>{{ address.country.name}}</td>
-                <td>{{ phone_number_format(address.mobile) }}</td>
-                <td> <a href="{{ path('dywee_address_admin_view', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-eye"></i> </a>
-                        <a href="{{ path('dywee_address_admin_update', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-pencil"></i> </a>
-                        <a href="{{ path('dywee_address_admin_delete', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-trash-o"></i> </a>
+                <td>{{ address.line1 }}</td>
+                <td>{{ address.city.name }}</td>
+                <td>{{ address.city.country.name}}</td>
+                <td>
+                    {% if address.phone %}
+                        {{ phone_number_format(address.phone.phoneNumber) }}
+                    {% else %}
+                        {{ 'undefined'|trans }}
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <a href="{{ path('address_admin_view', {id: address.id}) }}" class="btn btn-default"><i class="fa fa-eye"></i> </a>
+                        <a href="{{ path('address_admin_update', {id: address.id}) }}" class="btn btn-default"><i class="fa fa-pencil"></i> </a>
+                    </div>
+
+                    <a href="{{ path('address_admin_delete', {id: address.id}) }}" class="btn btn-xs btn-danger"><i class="fa fa-trash-o"></i> </a>
                     
                 </td>
             </tr>

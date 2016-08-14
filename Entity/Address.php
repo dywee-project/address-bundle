@@ -106,11 +106,6 @@ class Address implements AddressInterface
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dywee\UserBundle\Entity\User")
-     */
-    private $users;
-
-    /**
      * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\Email", cascade={"persist"})
      */
     private $email;
@@ -120,12 +115,6 @@ class Address implements AddressInterface
      */
     private $phone;
 
-
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
 
 
     /**
@@ -350,32 +339,6 @@ class Address implements AddressInterface
     public function getBox()
     {
         return $this->box;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function addUser(User $user)
-    {
-        $this->users[] = $user;
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function removeUser(User $user)
-    {
-        $this->users->removeElement($user);
-        return $this;
     }
 
     /**

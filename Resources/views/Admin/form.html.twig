@@ -1,0 +1,38 @@
+{# Dywee\EshopBundle\Resources\View\Eshop\form.html.twig #}
+
+{{ form_start(form) }}
+
+{{ form_errors(form) }}
+
+<div class="row">
+    <div class="col-md-6">
+
+        {{ form_row(form.lastName) }}
+
+        {{ form_row(form.firstName) }}
+
+        {{ form_row(form.company) }}
+
+        {{ form_row(form.email.email) }}
+
+        {{ form_row(form.phone.phone_number) }}
+
+        {{ form_row(form.number) }}
+
+        {{ form_row(form.box) }}
+
+        {{ form_row(form.line1) }}
+
+        {{ form_row(form.line2) }}
+
+        {{ form_row(form.city) }}
+
+    </div>
+</div>
+
+{{ form_widget(form.save, {'attr': {'class': 'btn-success col-md-offset-2'}, 'label': 'Ajouter'}) }}
+
+
+{{ form_rest(form) }}
+
+{{ form_end(form) }}
