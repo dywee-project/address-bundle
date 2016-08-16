@@ -1,6 +1,8 @@
 <p>{% if address.company != '' %}{{ address.company }}<br>{% endif %}
     {{ address.firstName }} {{ address.lastName }}<br>
-    {{ address.email.email }}<br>
+    {% if address.email is not null %}
+        {{ address.email.email }}<br>
+    {% endif %}
     {% if address.phone is not null %}
         {{ phone_number_format(address.phone.phoneNumber, 'NATIONAL') }}
     {% endif %}
