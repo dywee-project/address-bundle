@@ -18,19 +18,19 @@ class AddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName',      TextType::class)
-            ->add('lastName',       TextType::class)
-            ->add('number',         TextType::class)
-            ->add('box',            TextType::class, array('required' => false))
-            ->add('line1',          TextType::class)
-            ->add('line2',          TextType::class, array('required' => false))
+            ->add('firstName',      TextType::class, array('label' => 'address.firstName'))
+            ->add('lastName',       TextType::class, array('label' => 'address.lastName'))
+            ->add('number',         TextType::class, array('label' => 'address.number'))
+            ->add('box',            TextType::class, array('label' => 'address.box', 'required' => false))
+            ->add('line1',          TextType::class, array('label' => 'address.line1'))
+            ->add('line2',          TextType::class, array('label' => 'address.line2', 'required' => false))
             ->add('city',           EntityType::class, array(
+                'label' => 'address.city',
                 'class'         => 'DyweeAddressBundle:City',
                 'choice_label'  => 'zipName'
             ))
-            ->add('email',          EmailType::class)
-            ->add('phone',          PhoneNumberType::class)
-            ->add('save',           SubmitType::class)
+            ->add('email',          EmailType::class, array('label' => 'address.email'))
+            ->add('phone',          PhoneNumberType::class, array('label' => 'address.phone'))
         ;
     }
     

@@ -5,11 +5,13 @@ address:
         label: Gestion des adresses
         table: Liste des adresses
 
-firstName: Prénom
-lastName: Nom
-company: Société
-phoneNumber: Numéro de téléphone
-number: Numéro
-line1: Adresse
-line2: Complément
-city: Ville
+    firstName: Prénom
+    lastName: Nom
+    company: Société
+    phoneNumber: Numéro de téléphone
+    number: Numéro
+    line1: Adresse
+    line2: Complément
+    city: Ville
+    company: Société
+    email: Email

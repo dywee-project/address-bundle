@@ -17,7 +17,7 @@ class CompleteAddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('company',        TextType::class, array('required' => false));
+            ->add('company',        TextType::class, array('label' => 'address.company', 'required' => false));
     }
 
     public function getParent()

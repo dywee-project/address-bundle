@@ -10,8 +10,9 @@
 
 <p>{{ address.line1 }}, {{ address.number }}
     {% if address.box is not null %}
-        - {{ 'address.box'|trans }}: {{ address.box }}<br>
+        - {{ 'address.box'|trans }}: {{ address.box }}
     {% endif %}
+    <br>
     {% if address.line2 != '' %}
         {{ address.line2 }}<br>
     {% endif %}

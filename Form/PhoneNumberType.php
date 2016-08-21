@@ -20,7 +20,8 @@ class PhoneNumberType extends AbstractType
             ->add('phone_number', \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::class, array(
                     'widget' => \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::WIDGET_COUNTRY_CHOICE,
                     'country_choices' => array('FR', 'BE'),
-                    'preferred_country_choices' => array('BE')
+                    'preferred_country_choices' => array('BE'),
+                    'label' => 'address.phoneNumber'
                 )
             )
         ;

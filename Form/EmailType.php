@@ -5,7 +5,7 @@ namespace Dywee\AddressBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType as BaseEmailType;
 
 class EmailType extends AbstractType
 {
@@ -16,7 +16,7 @@ class EmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',    \Symfony\Component\Form\Extension\Core\Type\EmailType::class)
+            ->add('email',    BaseEmailType::class, array('label' => 'address.email'))
             //->add('isMain',     CheckboxType::class,    array('required' => false))
         ;
     }
