@@ -375,6 +375,16 @@ class Address implements AddressInterface
         return $this->phone;
     }
 
+    /**
+     * @return CountryInterface|null
+     */
+    public function getCountry()
+    {
+        if($this->getCity())
+            return $this->getCity()->getCountry();
+        return null;
+    }
+
     public function __toString()
     {
         return $this->getFirstName(). ' ' . $this->getLastName() . ' - '. $this->getNumber() . ', ' . $this->getLine1() . ' - ' . ($this->getCity() ? $this->getCity()->getName() : '');

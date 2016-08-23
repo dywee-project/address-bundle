@@ -2,6 +2,7 @@
 
 namespace Dywee\AddressBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -166,17 +167,17 @@ class Country implements CountryInterface
      */
     public function __construct()
     {
-        $this->cities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cities = new ArrayCollection();
     }
 
     /**
      * Add city
      *
-     * @param \Dywee\AddressBundle\Entity\City $city
+     * @param City $city
      *
      * @return Country
      */
-    public function addCity(\Dywee\AddressBundle\Entity\City $city)
+    public function addCity(City $city)
     {
         $this->cities[] = $city;
         $city->setCountry($this);
@@ -187,9 +188,9 @@ class Country implements CountryInterface
     /**
      * Remove city
      *
-     * @param \Dywee\AddressBundle\Entity\City $city
+     * @param City $city
      */
-    public function removeCity(\Dywee\AddressBundle\Entity\City $city)
+    public function removeCity(City $city)
     {
         $this->cities->removeElement($city);
     }
@@ -212,5 +213,10 @@ class Country implements CountryInterface
     public function getUsers()
     {
         return $this->users;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

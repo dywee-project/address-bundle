@@ -196,6 +196,11 @@ interface AddressInterface extends PersistableInterface
      */
     public function getPhone();
 
+    /**
+     * @return null|Country
+     */
+    public function getCountry();
+
     public function __toString();
 
 }
