@@ -106,12 +106,12 @@ class Address implements AddressInterface
     private $city;
 
     /**
-     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\Email", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\Email", cascade={"persist"})
      */
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity="Dywee\AddressBundle\Entity\PhoneNumber", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\PhoneNumber", cascade={"persist"})
      */
     private $phone;
 

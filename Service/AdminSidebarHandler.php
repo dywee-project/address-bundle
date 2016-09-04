@@ -18,7 +18,7 @@ class AdminSidebarHandler
     {
         $menu = array(
             'key' => 'address',
-            'icon' => 'fa fa-files-o',
+            'icon' => 'fa fa-map-marker',
             'label' => 'address.sidebar.label',
             'children' => array(
                 array(
