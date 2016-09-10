@@ -1,23 +1,27 @@
-<address>
-    <p>{% if address.company != '' %}{{ address.company }}<br>{% endif %}
-        {{ address.firstName }} {{ address.lastName }}<br>
-        {% if address.email is not null %}
-            {{ address.email.email }}<br>
-        {% endif %}
-        {% if address.phone is not null %}
-            {{ phone_number_format(address.phone.phoneNumber, 'NATIONAL') }}
-        {% endif %}
-    </p>
+{% if address is not null %}
+    <address>
+        <p>{% if address.company != '' %}{{ address.company }}<br>{% endif %}
+            {{ address.firstName }} {{ address.lastName }}<br>
+            {% if address.email is not null %}
+                {{ address.email.email }}<br>
+            {% endif %}
+            {% if address.phone is not null %}
+                {{ phone_number_format(address.phone.phoneNumber, 'NATIONAL') }}
+            {% endif %}
+        </p>
 
-    <p>{{ address.line1 }}, {{ address.number }}
-        {% if address.box is not null %}
-            - {{ 'address.box'|trans }}: {{ address.box }}
-        {% endif %}
-        <br>
-        {% if address.line2 != '' %}
-            {{ address.line2 }}<br>
-        {% endif %}
-        {{ address.city.zipName }}<br>
-        {{ address.city.country.name }}
-    </p>
-</address>
+        <p>{{ address.line1 }}, {{ address.number }}
+            {% if address.box is not null %}
+                - {{ 'address.box'|trans }}: {{ address.box }}
+            {% endif %}
+            <br>
+            {% if address.line2 != '' %}
+                {{ address.line2 }}<br>
+            {% endif %}
+            {{ address.city.zipName }}<br>
+            {{ address.city.country.name }}
+        </p>
+    </address>
+{% else %}
+    {{ 'address.notDefined'|trans }}
+{% endif %}
