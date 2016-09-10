@@ -15,3 +15,5 @@ address:
     city: Ville
     company: Société
     email: Email
+
+    notDefined: Pas d'adresse renseignée
