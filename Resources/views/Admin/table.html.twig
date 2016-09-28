@@ -50,8 +50,21 @@
                     <td>{{ address.firstName }}</td>
                     <td>{{ address.lastName }}</td>
                     <td>{{ address.line1 }}, {{ address.number }}</td>
-                    <td>{{ address.city.name }}</td>
-                    <td>{{ address.city.country.name}}</td>
+                    <td>
+                        {% if address.city is not null %}
+                            {{ address.city.name }}
+                        {% else %}
+                            <span class="label label-danger">Non défini</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if address.city is not null and address.city.country is not null %}
+                            {{ address.city.country.name}}
+                        {% else %}
+                            <span class="label label-danger">Non défini</span>
+                        {% endif %}
+
+                    </td>
                     <td>
                         {% if address.phone %}
                             {{ phone_number_format(address.phone.phoneNumber) }}

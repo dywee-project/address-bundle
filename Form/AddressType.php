@@ -20,10 +20,10 @@ class AddressType extends AbstractType
         $builder
             ->add('firstName',      TextType::class, array('label' => 'address.firstName'))
             ->add('lastName',       TextType::class, array('label' => 'address.lastName'))
-            ->add('number',         TextType::class, array('label' => 'address.number'))
-            ->add('box',            TextType::class, array('label' => 'address.box', 'required' => false))
             ->add('line1',          TextType::class, array('label' => 'address.line1'))
             ->add('line2',          TextType::class, array('label' => 'address.line2', 'required' => false))
+            ->add('number',         TextType::class, array('label' => 'address.number'))
+            ->add('box',            TextType::class, array('label' => 'address.box', 'required' => false))
             ->add('city',           EntityType::class, array(
                 'label' => 'address.city',
                 'class'         => 'DyweeAddressBundle:City',

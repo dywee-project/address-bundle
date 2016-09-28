@@ -18,8 +18,12 @@
             {% if address.line2 != '' %}
                 {{ address.line2 }}<br>
             {% endif %}
-            {{ address.city.zipName }}<br>
-            {{ address.city.country.name }}
+            {% if address.city is not null %}
+                {{ address.city.zipName }}<br>
+                {{ address.city.country.name }}
+            {% else %}
+                Pas de ville renseignée
+            {% endif %}
         </p>
     </address>
 {% else %}
