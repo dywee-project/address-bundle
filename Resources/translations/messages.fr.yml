@@ -7,7 +7,6 @@ address:
 
     firstName: Prénom
     lastName: Nom
-    company: Société
     phoneNumber: Numéro de téléphone
     number: Numéro
     line1: Adresse

@@ -1,0 +1,18 @@
+address:
+    box: box
+
+    sidebar:
+        label: Addresses
+        table: Address list
+
+    firstName: Firstname
+    lastName: Lastname
+    company: Company
+    phoneNumber: Phone number
+    number: Number
+    line1: Address
+    line2: Complément
+    city: City
+    email: Email
+
+    notDefined: Pas d'adresse renseignée
