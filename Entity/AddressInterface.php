@@ -7,9 +7,7 @@
  */
 namespace Dywee\AddressBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Dywee\CoreBundle\Model\PersistableInterface;
-use Dywee\UserBundle\Entity\User;
 
 
 interface AddressInterface extends PersistableInterface

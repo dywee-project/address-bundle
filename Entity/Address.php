@@ -2,9 +2,7 @@
 
 namespace Dywee\AddressBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Dywee\UserBundle\Entity\User;
 
 /**
  * Address
@@ -114,7 +112,6 @@ class Address implements AddressInterface
      * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\PhoneNumber", cascade={"persist"})
      */
     private $phone;
-
 
 
     /**
@@ -380,14 +377,14 @@ class Address implements AddressInterface
      */
     public function getCountry()
     {
-        if($this->getCity())
+        if ($this->getCity())
             return $this->getCity()->getCountry();
         return null;
     }
 
     public function __toString()
     {
-        return $this->getFirstName(). ' ' . $this->getLastName() . ' - '. $this->getNumber() . ', ' . $this->getLine1() . ' - ' . ($this->getCity() ? $this->getCity()->getName() : '');
+        return $this->getFirstName() . ' ' . $this->getLastName() . ' - ' . $this->getNumber() . ', ' . $this->getLine1() . ' - ' . ($this->getCity() ? $this->getCity()->getName() : '');
     }
 
 }

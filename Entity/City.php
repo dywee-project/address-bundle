@@ -56,9 +56,7 @@ class City implements CityInterface
 
 
     /**
-     * Get id
-     *
-     * @return int
+     * @inheritdoc
      */
     public function getId()
     {
@@ -66,11 +64,7 @@ class City implements CityInterface
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return City
+     * @inheritdoc
      */
     public function setName($name)
     {
@@ -80,9 +74,7 @@ class City implements CityInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getName()
     {
@@ -90,11 +82,7 @@ class City implements CityInterface
     }
 
     /**
-     * Set zip
-     *
-     * @param string $zip
-     *
-     * @return City
+     * @inheritdoc
      */
     public function setZip($zip)
     {
@@ -104,9 +92,7 @@ class City implements CityInterface
     }
 
     /**
-     * Get zip
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getZip()
     {
@@ -114,11 +100,7 @@ class City implements CityInterface
     }
 
     /**
-     * Set latitude
-     *
-     * @param float $latitude
-     *
-     * @return City
+     * @inheritdoc
      */
     public function setLatitude($latitude)
     {
@@ -128,9 +110,7 @@ class City implements CityInterface
     }
 
     /**
-     * Get latitude
-     *
-     * @return float
+     * @inheritdoc
      */
     public function getLatitude()
     {
@@ -138,11 +118,7 @@ class City implements CityInterface
     }
 
     /**
-     * Set longitude
-     *
-     * @param float $longitude
-     *
-     * @return City
+     * @inheritdoc
      */
     public function setLongitude($longitude)
     {
@@ -152,9 +128,7 @@ class City implements CityInterface
     }
 
     /**
-     * Get longitude
-     *
-     * @return float
+     * @inheritdoc
      */
     public function getLongitude()
     {
@@ -162,11 +136,7 @@ class City implements CityInterface
     }
 
     /**
-     * Set country
-     *
-     * @param CountryInterface $country
-     *
-     * @return City
+     * @inheritdoc
      */
     public function setCountry(CountryInterface $country = null)
     {
@@ -176,17 +146,18 @@ class City implements CityInterface
     }
 
     /**
-     * Get country
-     *
-     * @return CountryInterface
+     * @inheritdoc
      */
     public function getCountry()
     {
         return $this->country;
     }
 
+    /**
+     * @return string
+     */
     public function getZipName()
     {
-        return $this->getZip().' - '.$this->getName();
+        return $this->getZip() . ' - ' . $this->getName();
     }
 }
