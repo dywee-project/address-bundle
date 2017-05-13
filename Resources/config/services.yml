@@ -13,3 +13,7 @@ services:
     dywee_address.sidebar_handler:
         class: Dywee\AddressBundle\Service\AdminSidebarHandler
         arguments: [ '@router' ]
+
+    dywee_address.form_handler:
+        class: Dywee\AddressBundle\Service\FormHandler
+        arguments: ['@form.factory', '@doctrine.orm.entity_manager']

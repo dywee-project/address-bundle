@@ -3,6 +3,8 @@
 namespace Dywee\AddressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Dywee\CoreBundle\Model\AddressInterface;
+use Dywee\CoreBundle\Model\CustomerInterface;
 
 /**
  * Address
@@ -112,6 +114,12 @@ class Address implements AddressInterface
      * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\PhoneNumber", cascade={"persist"})
      */
     private $phone;
+
+    /**
+     * @var CustomerInterface
+     * @ORM\ManyToOne(targetEntity="Dywee\CoreBundle\Model\CustomerInterface", inversedBy="addresses")
+     */
+    private $user;
 
 
     /**
@@ -377,9 +385,30 @@ class Address implements AddressInterface
      */
     public function getCountry()
     {
-        if ($this->getCity())
+        if ($this->getCity()) {
             return $this->getCity()->getCountry();
+        }
         return null;
+    }
+
+    /**
+     * @return CustomerInterface
+     */
+    public function getUser() : CustomerInterface
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param CustomerInterface $user
+     *
+     * @return Address
+     */
+    public function setUser(CustomerInterface $user) : Address
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
     public function __toString()
