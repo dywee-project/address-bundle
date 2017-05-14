@@ -1,7 +1,7 @@
 {
-  "name": "dywee/address-bundle",
+  "name": "olix21/address-bundle",
   "type": "symfony-bundle",
-  "description": "Symfony2 bundle for easy management of address",
+  "description": "Symfony3 bundle for easy management of address",
   "keywords": ["address"],
   "license": "MIT",
   "authors": [
@@ -13,13 +13,13 @@
     }
   ],
   "require": {
-    "php": ">=5.3.0",
+    "php": ">=7.1.0",
     "knplabs/knp-paginator-bundle": "^2.5",
     "misd/phone-number-bundle": "^1.2"
   },
   "autoload": {
     "psr-4": {
-      "Dywee\\AddressBundle\\": ""
+      "Olix21\\AddressBundle\\": ""
     }
   }
 }
