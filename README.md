@@ -52,7 +52,7 @@ $bundles = [
     ...
     new Misd\PhoneNumberBundle\MisdPhoneNumberBundle()
 ]
-```
+``` 
 
 config.yml
 ```
