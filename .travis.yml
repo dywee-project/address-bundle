@@ -17,19 +17,6 @@ language: php
 
 php:
     - '7.1'
-    - hhvm
-
-# Matrix to test in every php version
-matrix:
-  # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
-  fast_finish: true
-  include:
-    - php: 7.1
-    - php: hhvm
-  allow_failures:
-    - php: hhvm
-  env:
-    - PHPCS_VER="^3.0"
 
 # Define an environment variable
 env:
