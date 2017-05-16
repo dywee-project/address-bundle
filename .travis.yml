@@ -39,13 +39,13 @@ before-install:
 install:
   - composer update --prefer-dist --no-interaction
 
-before-script:
-  - phpcs --version
+#before-script:
+#  - phpcs --version
 
 # Run script
 script:
   #- phpunit
-  - ./vendor/bin/php-cs-fixer fix --verbose
+  - ./vendor/bin/php-cs-fixer
 
 # After a build, send email notification with the build results
 notifications:
