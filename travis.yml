@@ -1,0 +1,56 @@
+# Project language
+language: php
+
+# Allows use container-based infrastructure
+sudo: false
+
+# Start mysql service
+services:
+  - mysql
+
+# Cache composer packages so "composer install" is faster
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+# Matrix to test in every php version
+matrix:
+  # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
+  fast_finish: true
+  include:
+    - php: 7.1
+    - php: hhvm
+  allow_failures:
+    - php: hhvm
+  env:
+    - PHPCS_VER="^3.0"
+
+# Define an environment variable
+env:
+  - SYMFONY_VERSION="3.2.*" DB=mysql
+
+# Update composer
+before-install:
+  - composer self-update
+
+# Install composer dependencies,
+# Create database, schema and fixtures
+install:
+  - composer install
+  - cp app/config/parameters.yml.dist app/config/parameters.yml
+  - php bin/console doctrine:database:create --env=test
+  - php bin/console doctrine:schema:create --env=test
+  - php bin/console doctrine:fixtures:load -n --env=test
+  - composer global require "squizlabs/php_codesniffer $PHPCS_VER"
+
+before-script:
+  - phpcs --version
+
+# Run script
+script:
+  #- phpunit
+  - vendor/bin/phpspec run --config=phpspec.yml --no-interaction
+
+# After a build, send email notification with the build results
+notifications:
+  email: olivier.delbruyere@hotmail.com
