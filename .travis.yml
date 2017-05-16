@@ -13,6 +13,12 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
+language: php
+
+php:
+    - '7.1'
+    - hhvm
+
 # Matrix to test in every php version
 matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
