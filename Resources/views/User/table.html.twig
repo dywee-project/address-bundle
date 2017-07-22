@@ -1,6 +1,4 @@
-{# Dywee\AddressBundle\Resources\View\User\table.html.twig #}
-
-{%  extends "DyweeAddressBundle::userAdmin.html.twig" %}
+{% extends "DyweeAddressBundle::userAdmin.html.twig" %}
 
 {% block metaTitle %}
     Liste des adresses {{ parent() }}
@@ -8,46 +6,82 @@
 
 {% block body %}
 
-    <a href="{{ path('dywee_address_user_add') }}" class="btn btn-success action-right"><i class="fa fa-plus"></i> Ajouter</a>
 
-    <div class="title-heading">
-        <h1 class="text-center">Liste des adresses</h1>
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <div class="box-tools">
+                <a href="{{ path('address_user_add') }}" class="btn btn-success btn-box-tool"><i class="fa fa-plus"></i> Ajouter</a>
+            </div>
+            <h1 class="box-title">Liste des adresses</h1>
+        </div>
+        {% if addresses|length > 0 %}
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Prénom Nom</th>
+                    <th>Rue</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for address in addresses %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ address.firstName }} {{ address.lastName }}</td>
+                        <td>{{ address.line1 }}</td>
+                        <td>
+                            {% if address.city %}
+                                {{ address.city.zip }} - {{ address.city.name }}
+                            {% else %}
+                                NC
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if address.city and address.city.country %}
+                                {{ address.city.country.name }}
+                            {% else %}
+                                NC
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if address.phone %}
+                                {# TODO #}
+                                TODO
+                            {% else %}
+                                NC
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ path('address_user_view', {id: address.id}) }}" class="btn btn-default"
+                                   target="_blank"><i class="fa fa-eye"></i> </a>
+                                <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"><i
+                                            class="fa fa-pencil"></i> </a>
+                            </div>
+                            <a href="{{ path('address_user_remove', {id: address.id}) }}" class="btn btn-sm btn-danger"><i
+                                        class="fa fa-trash-o"></i> </a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="box-body">
+                <p>Vous n'avez pas encore renseigné d'adresse</p>
+                <p><a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une
+                        adresse</a></p>
+            </div>
+        {% endif %}
+            <div class="box-body">
+                <a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
+            </div>
     </div>
 
-    {% if addressList|length > 0 %}
-        <table class="table table-striped table-hover table-condensed">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Prénom Nom</th>
-                <th>Rue</th>
-                <th>Ville</th>
-                <th>Pays</th>
-                <th>Téléphone</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {%  for address in addressList %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ address.firstName }} {{ address.lastName }}</td>
-                    <td>{{ address.address1 }}</td>
-                    <td>{{ address.zip }} - {{ address.cityString }}</td>
-                    <td>{{ address.country.name}}</td>
-                    <td>{{ address.mobile }}</td>
-                    <td> <a href="{{ path('dywee_address_user_view', {id: address.id}) }}" class="link-unstyled" target="_blank"><i class="fa fa-eye"></i> </a>
-                            <a href="{{ path('dywee_address_user_update', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-pencil"></i> </a>
-                            <a href="{{ path('dywee_address_user_delete', {id: address.id}) }}" class="link-unstyled"><i class="fa fa-trash-o"></i> </a>
-                        
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Vous n'avez pas encore renseigné d'adresse</p>
-        <p><a href="{{ path('dywee_address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une adresse</a></p>
-    {% endif %}
+
 
 {% endblock %}

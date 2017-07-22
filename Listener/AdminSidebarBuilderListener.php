@@ -4,7 +4,7 @@ namespace Dywee\AddressBundle\Listener;
 
 use Dywee\AddressBundle\Service\AdminSidebarHandler;
 use Dywee\CoreBundle\DyweeCoreEvent;
-use Dywee\CoreBundle\Event\AdminSidebarBuilderEvent;
+use Dywee\CoreBundle\Event\SidebarBuilderEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 
@@ -24,9 +24,9 @@ class AdminSidebarBuilderListener implements EventSubscriberInterface{
         );
     }
 
-    public function addElementToSidebar(AdminSidebarBuilderEvent $adminSidebarBuilderEvent)
+    public function addElementToSidebar(SidebarBuilderEvent $adminSidebarBuilderEvent)
     {
-        $adminSidebarBuilderEvent->addAdminElement($this->adminSidebarHandler->getSideBarMenuElement());
+        $adminSidebarBuilderEvent->addElement($this->adminSidebarHandler->getSideBarMenuElement());
     }
 
 }

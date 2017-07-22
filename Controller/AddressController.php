@@ -43,7 +43,7 @@ class AddressController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @Route(name="user_route_add", path="member/address/add")
+     * @Route(name="address_user_add", path="member/address/add")
      */
     public function addAction(Request $request)
     {
