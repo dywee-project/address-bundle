@@ -1,15 +1,22 @@
-{# Dywee\AddressBundle\Resources\View\User\add.html.twig #}
-
-{%  extends "DyweeAddressBundle::userAdmin.html.twig" %}
+{% extends "DyweeAddressBundle::userAdmin.html.twig" %}
 
 {% block metaTitle %}
     Création d'une adresse {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <div class="title-heading">
-        <h1>Création d'une adresse</h1>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Création d'une adresse</h2>
+                </div>
+                <div class="panel-body">
+                    {% include "DyweeAddressBundle:Form:address_user.html.twig" %}
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    {% include "DyweeAddressBundle:Form:address_user.html.twig" %}
 {% endblock %}

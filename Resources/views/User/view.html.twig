@@ -1,3 +1,95 @@
-{# Dywee\EshopBundle\Resources\View\Eshop\view.html.twig #}
+{% extends "DyweeAddressBundle::userAdmin.html.twig" %}
 
-{%  extends "DyweeEshopBundle::layout.html.twig" %}
+{% block body %}
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="box-tools pull-right">
+                        <a href="{{ path('address_admin_update', {id: address.id}) }}" class="btn btn-box-tool"><i
+                                    class="fa fa-pencil"></i> </a>
+                    </div>
+                    <h2 class="box-title">Adresse</h2>
+                </div>
+                <div class="box-body">
+                    {% include 'DyweeAddressBundle:Address:view_wrapped.html.twig' %}
+                    <a href="{{ path('address_admin_update', {id: address.id}) }}" class="btn btn-default btn-block"><i
+                                class="fa fa-pencil"></i> Modifier</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h2 class="box-title">Carte</h2>
+                </div>
+                <div class="box-body">
+                    <div id="map"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var mapDiv = document.getElementById('map');
+            $("#map").height($("#map").width());
+
+            var address = "{{ address.line1 }} {{ address.number }}, {{ address.city.zipName }} {{ address.city.country.name }}";
+            var geocoder = new google.maps.Geocoder();
+            var map = new google.maps.Map(mapDiv, {
+                zoom: 14
+            });
+
+            if (geocoder) {
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                            map.setCenter(results[0].geometry.location);
+
+                            var infowindow = new google.maps.InfoWindow(
+                                {
+                                    content: '<b>' + address + '</b>',
+                                    size: new google.maps.Size(150, 50)
+                                });
+
+                            var marker = new google.maps.Marker({
+                                position: results[0].geometry.location,
+                                map: map,
+                                title: address
+                            });
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infowindow.open(map, marker);
+                            });
+
+                        } else {
+                            alert("No results found");
+                        }
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+
+        });
+
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrfR25MW6fQ2HZNWycOs_X8oG9STiUg5Y&callback=initMap">
+    </script>
+
+    {#<div class="col-md-6">
+        <p>Commande(s) liée(s)</p>
+        <ul>
+            {% for order in orders %}
+                <li><a href="{{ path('dywee_order_view', { id: order.id }) }}">#{{ order.id }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>#}
+{% endblock %}

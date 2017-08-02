@@ -106,7 +106,7 @@ class Address implements AddressInterface
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dywee\AddressBundle\Entity\Email", cascade={"persist"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
 
@@ -120,6 +120,12 @@ class Address implements AddressInterface
      * @ORM\ManyToOne(targetEntity="Dywee\CoreBundle\Model\CustomerInterface", inversedBy="addresses")
      */
     private $user;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $isValid = false;
 
 
     /**
@@ -349,7 +355,7 @@ class Address implements AddressInterface
     /**
      * @inheritdoc
      */
-    public function setEmail(Email $email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
         return $this;
@@ -402,9 +408,9 @@ class Address implements AddressInterface
     /**
      * @param CustomerInterface $user
      *
-     * @return Address
+     * @return AddressInterface
      */
-    public function setUser(CustomerInterface $user) : Address
+    public function setUser(CustomerInterface $user) : AddressInterface
     {
         $this->user = $user;
 
@@ -413,7 +419,24 @@ class Address implements AddressInterface
 
     public function __toString()
     {
-        return $this->getFirstName() . ' ' . $this->getLastName() . ' - ' . $this->getNumber() . ', ' . $this->getLine1() . ' - ' . ($this->getCity() ? $this->getCity()->getName() : '');
+        return $this->getFirstName() . ' ' . $this->getLastName() . ' - ' . $this->getLine1() . ', ' . $this->getNumber() . ' - ' . ($this->getCity() ? ($this->getCity()->getZip() . ' ' . $this->getCity()->getName()) : '');
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function isIsValid() : bool
+    {
+        return $this->isValid;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setIsValid(bool $isValid) : AddressInterface
+    {
+        $this->isValid = $isValid;
+
+        return $this;
+    }
 }

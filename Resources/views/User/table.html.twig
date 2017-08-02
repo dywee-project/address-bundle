@@ -10,7 +10,8 @@
     <div class="box box-default">
         <div class="box-header with-border">
             <div class="box-tools">
-                <a href="{{ path('address_user_add') }}" class="btn btn-success btn-box-tool"><i class="fa fa-plus"></i> Ajouter</a>
+                <a href="{{ path('address_user_add') }}" class="btn btn-success btn-box-tool"><i class="fa fa-plus"></i>
+                    Ajouter</a>
             </div>
             <h1 class="box-title">Liste des adresses</h1>
         </div>
@@ -24,6 +25,7 @@
                     <th>Ville</th>
                     <th>Pays</th>
                     <th>Téléphone</th>
+                    <th>Verified</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -32,7 +34,12 @@
                     <tr>
                         <td>{{ loop.index }}</td>
                         <td>{{ address.firstName }} {{ address.lastName }}</td>
-                        <td>{{ address.line1 }}</td>
+                        <td>
+                            {{ address.line1 }}, {{ address.number }}
+                            {% if address.line2 is not null %}
+                                <br> {{ address.line2 }}
+                            {% endif %}
+                        </td>
                         <td>
                             {% if address.city %}
                                 {{ address.city.zip }} - {{ address.city.name }}
@@ -56,15 +63,23 @@
                             {% endif %}
                         </td>
                         <td>
+                            {% if address.isValid == true %}
+                                <i class="fa fa-check"></i>
+                            {% else %}
+                                <i class="fa fa-times"></i>
+                            {% endif %}
+                        </td>
+                        <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ path('address_user_view', {id: address.id}) }}" class="btn btn-default"
-                                   target="_blank"><i class="fa fa-eye"></i> </a>
-                                <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"><i
-                                            class="fa fa-pencil"></i> </a>
+                                   title="Voir le détail de l'adresse"><i class="fa fa-eye"></i> </a>
+                                <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"
+                                   title="Editer l'adresse"><i class="fa fa-pencil"></i> </a>
+                                <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"
+                                   title="Verifier l'adresse"><i class="fa fa-location"></i> </a>
                             </div>
-                            <a href="{{ path('address_user_remove', {id: address.id}) }}" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash-o"></i> </a>
-
+                            <a href="{{ path('address_user_remove', {id: address.id}) }}" class="btn btn-sm btn-danger"
+                               title="SUpprimer l'adresseé"><i class="fa fa-trash-o"></i> </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -73,15 +88,13 @@
         {% else %}
             <div class="box-body">
                 <p>Vous n'avez pas encore renseigné d'adresse</p>
-                <p><a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter une
-                        adresse</a></p>
+                <p><a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter
+                        une adresse</a></p>
             </div>
         {% endif %}
-            <div class="box-body">
-                <a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
-            </div>
+        <div class="box-body">
+            <a href="{{ path('address_user_add') }}" class="btn btn-success"><i class="fa fa-plus"></i> Ajouter</a>
+        </div>
     </div>
-
-
 
 {% endblock %}
