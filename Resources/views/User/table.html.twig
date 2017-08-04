@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% block body %}
-
-
     <div class="box box-default">
         <div class="box-header with-border">
             <div class="box-tools">
@@ -25,7 +23,7 @@
                     <th>Ville</th>
                     <th>Pays</th>
                     <th>Téléphone</th>
-                    <th>Verified</th>
+                    {# TODO <th>Verified</th> #}
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -62,6 +60,7 @@
                                 NC
                             {% endif %}
                         </td>
+                        {# TODO
                         <td>
                             {% if address.isValid == true %}
                                 <i class="fa fa-check"></i>
@@ -69,17 +68,20 @@
                                 <i class="fa fa-times"></i>
                             {% endif %}
                         </td>
+                        #}
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <a href="{{ path('address_user_view', {id: address.id}) }}" class="btn btn-default"
                                    title="Voir le détail de l'adresse"><i class="fa fa-eye"></i> </a>
                                 <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"
                                    title="Editer l'adresse"><i class="fa fa-pencil"></i> </a>
-                                <a href="{{ path('address_user_update', {id: address.id}) }}" class="btn btn-default"
+                                {# TODO
+                                <a href="#" class="btn btn-default"
                                    title="Verifier l'adresse"><i class="fa fa-location"></i> </a>
+                                   #}
                             </div>
                             <a href="{{ path('address_user_remove', {id: address.id}) }}" class="btn btn-sm btn-danger"
-                               title="SUpprimer l'adresseé"><i class="fa fa-trash-o"></i> </a>
+                               title="Supprimer l'adresseé"><i class="fa fa-trash-o"></i> </a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -1,8 +1,4 @@
 services:
-    address_bundle.datatable.address:
-        class: AddressBundle\Datatables\AddressDatatable
-        tags:
-            - { name: sg.datatable.view }
 
     dywee_address.admin_sidebar_listener:
         class: Dywee\AddressBundle\Listener\AdminSidebarBuilderListener

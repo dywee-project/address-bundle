@@ -6,15 +6,23 @@ use Symfony\Component\Routing\Router;
 
 class AdminSidebarHandler
 {
-
+    /** @var Router  */
     private $router;
 
+    /**
+     * AdminSidebarHandler constructor.
+     *
+     * @param Router $router
+     */
     public function __construct(Router $router)
     {
         $this->router = $router;
     }
 
-    public function getSideBarMenuElement()
+    /**
+     * @return array
+     */
+    public function getSideBarAdminMenuElement()
     {
         $menu = array(
             'key' => 'address',
@@ -27,6 +35,21 @@ class AdminSidebarHandler
                     'route' => $this->router->generate('address_admin_table')
                 ),
             )
+        );
+
+        return $menu;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSideBarMemberMenuElement()
+    {
+        $menu = array(
+            'key' => 'address',
+            'icon' => 'fa fa-map-marker',
+            'label' => 'address.sidebar.label',
+            'route' => $this->router->generate('address_admin_table')
         );
 
         return $menu;
