@@ -10,28 +10,30 @@ namespace Dywee\AddressBundle\Service;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Dywee\AddressBundle\Entity\Address;
 use Dywee\AddressBundle\Form\AddressType;
 use Dywee\AddressBundle\Form\CompleteAddressType;
 use Dywee\OrderCMSBundle\Form\BillingAddressType;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class FormHandler
 {
-    /** @var FormFactory $formFactory */
+    /** @var FormFactoryInterface $formFactory */
     private $formFactory;
 
-    /** @var EntityManager $em */
+    /** @var EntityManagerInterface $em */
     private $em;
 
     /**
      * FormHandler constructor.
      *
-     * @param FormFactory   $formFactory
-     * @param EntityManager $entityManager
+     * @param FormFactoryInterface   $formFactory
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(FormFactory $formFactory, EntityManager $entityManager)
+    public function __construct(FormFactoryInterface $formFactory, EntityManagerInterface $entityManager)
     {
         $this->formFactory = $formFactory;
         $this->em = $entityManager;
