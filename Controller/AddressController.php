@@ -8,7 +8,7 @@ use Dywee\AddressBundle\Form\CompleteAddressType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AddressController extends Controller
 {
@@ -72,12 +72,12 @@ class AddressController extends Controller
     }
 
     /**
+     * @Route(name="address_user_update", path="member/address/{id}/update")
+     *
      * @param Address $address
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @Route(name="address_user_update", path="member/address/{id}/update")
      */
     public function updateAction(Address $address, Request $request)
     {
@@ -105,11 +105,11 @@ class AddressController extends Controller
     }
 
     /**
+     * @Route(name="address_user_remove", path="member/address/{id}/remove")
+     *
      * @param Address $address
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
-     * @Route(name="address_user_remove", path="member/address/{id}/remove")
      */
     public function deleteAction(Address $address)
     {

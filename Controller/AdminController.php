@@ -8,15 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends Controller
 {
     /**
-     * @param Request $request
-     * @return Response
-     *
      * @Route(name="address_admin_table", path="admin/address")
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     public function tableAction(Request $request)
     {
@@ -25,21 +26,22 @@ class AdminController extends Controller
 
         $query = $ar->findAll();
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
             25/*limit per page*/
         );
 
-        return $this->render('DyweeAddressBundle:Admin:table.html.twig', array('pagination' => $pagination));
+        return $this->render('DyweeAddressBundle:Admin:table.html.twig', ['pagination' => $pagination]);
     }
 
     /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     *
      * @Route(name="address_admin_add", path="admin/address/add")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function addAction(Request $request)
     {
@@ -47,8 +49,7 @@ class AdminController extends Controller
 
         $form = $this->get('form.factory')->create(CompleteAddressType::class, $address);
 
-        if($form->handleRequest($request)->isValid())
-        {
+        if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($address);
@@ -56,14 +57,16 @@ class AdminController extends Controller
 
             return $this->redirect($this->generateUrl('address_admin_table'));
         }
-        return $this->render('DyweeAddressBundle:Admin:add.html.twig', array('form' => $form->createView()));
+
+        return $this->render('DyweeAddressBundle:Admin:add.html.twig', ['form' => $form->createView()]);
     }
 
     /**
-     * @param Address $address
-     * @return Response
-     *
      * @Route(name="address_admin_view", path="admin/address/{id}")
+     *
+     * @param Address $address
+     *
+     * @return Response
      */
     public function viewAction(Address $address)
     {
@@ -73,15 +76,16 @@ class AdminController extends Controller
         //Créer une fonction dans le repository
         $orders = array_merge($or->findByBillingAddress($address), $or->findByShippingAddress($address));
 
-        return $this->render('DyweeAddressBundle:Admin:view.html.twig', array('address' => $address, 'orders' => $orders));
+        return $this->render('DyweeAddressBundle:Admin:view.html.twig', ['address' => $address, 'orders' => $orders]);
     }
 
     /**
+     * @Route(name="address_admin_update", path="admin/address/{id}/update")
+     *
      * @param Address $address
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
-     * @Route(name="address_admin_update", path="admin/address/{id}/update")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function updateAction(Address $address, Request $request)
     {
@@ -97,15 +101,17 @@ class AdminController extends Controller
             return $this->redirect($this->generateUrl('address_admin_table'));
         }
 
-        return $this->render('DyweeAddressBundle:Admin:edit.html.twig', array('address' => $address, 'form' => $form->createView()));
+        return $this->render('DyweeAddressBundle:Admin:edit.html.twig',
+            ['address' => $address, 'form' => $form->createView()]);
 
     }
 
     /**
-     * @param Address $address
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
      * @Route(name="address_admin_delete", path="admin/address/{id}/delete")
+     *
+     * @param Address $address
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Address $address)
     {

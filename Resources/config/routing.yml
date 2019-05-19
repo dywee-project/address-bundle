@@ -1,50 +1,22 @@
-##############################
-#           USER             #
-##############################
-
-
-##############################
-#           ADMIN            #
-##############################
-
-
-##############################
-#        SUPER ADMIN         #
-##############################
-
 address_table:
     path:   admin6833/address/table
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:table}
-
-address_view:
-    path:   admin6833/address/{id}
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:view}
-    requirements:
-        id: \d+
-    options:
-        expose: true
+    defaults: {_controller: Dywee\AddressBundle\Controller\SuperAdminAddressController::tableAction}
 
 address_add:
     path:   admin6833/address/add
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:add}
+    defaults: {_controller: Dywee\AddressBundle\Controller\SuperAdminAddressController::addAction}
 
 address_update:
     path:   admin6833/address/{id}/update
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:update}
+    defaults: {_controller: Dywee\AddressBundle\Controller\SuperAdminAddressController::updateAction}
     requirements:
         id: \d+
     options:
         expose: true
 
-address_delete:
-    path:   admin6833/address/{id}/delete
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:delete}
-    requirements:
-        id: \d+
-
 address_json:
     path:   admin6833/address/json/{id}
-    defaults: {_controller: DyweeAddressBundle:SuperAdminAddress:json, id: null}
+    defaults: {_controller: Dywee\AddressBundle\Controller\SuperAdminAddressController::jsonAction, id: null}
     options:
         expose: true
     requirements:
