@@ -101,9 +101,10 @@ class AdminController extends Controller
             return $this->redirect($this->generateUrl('address_admin_table'));
         }
 
-        return $this->render('DyweeAddressBundle:Admin:edit.html.twig',
-            ['address' => $address, 'form' => $form->createView()]);
-
+        return $this->render(
+            'DyweeAddressBundle:Admin:edit.html.twig',
+            ['address' => $address, 'form' => $form->createView()]
+        );
     }
 
     /**

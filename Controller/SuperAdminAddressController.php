@@ -18,8 +18,7 @@ class SuperAdminAddressController extends Controller
             ->add('valider', SubmitType::class)
             ->getForm();
 
-        if($form->handleRequest($request)->isValid())
-        {
+        if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -34,8 +33,7 @@ class SuperAdminAddressController extends Controller
     {
         $form = $this->get('form.factory')->createBuilder(AddressType::class, $address)->getForm();
 
-        if($form->handleRequest($request)->isValid())
-        {
+        if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -71,8 +69,7 @@ class SuperAdminAddressController extends Controller
 
     public function jsonAction(Address $address = null)
     {
-        if($address)
-        {
+        if ($address) {
             $response = array(
                 'name' => $address->getName(),
                 'id' => $address->getId(),
@@ -84,12 +81,10 @@ class SuperAdminAddressController extends Controller
                 'number' => $address->getNumber(),
             );
             return new Response(json_encode($response));
-        }
-        else{
+        } else {
             $addressList = $this->getDoctrine()->getManager()->getRepository('AddressBundle:Address')->findAll();
             $response = array();
-            foreach($addressList as $address)
-            {
+            foreach ($addressList as $address) {
                 $response[] = array(
                     'name' => $address->getName(),
                     'id' => $address->getId(),
@@ -107,13 +102,11 @@ class SuperAdminAddressController extends Controller
 
     public function jsonformAction(Request $request)
     {
-        if($request->isXmlHttpRequest()) // pour vérifier la présence d'une requete Ajax
-        {
+        if ($request->isXmlHttpRequest()) { // pour vérifier la présence d'une requete Ajax
             $address = new Address();
             $form = $this->get('form.factory')->createBuilder(AddressType::class, $address)->remove('valider')->getForm();
 
-            if($form->handleRequest($request)->isValid())
-            {
+            if ($form->handleRequest($request)->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($address);
                 $em->flush();

@@ -50,5 +50,4 @@ class AdminSidebarBuilderListener implements EventSubscriberInterface
     {
         $adminSidebarBuilderEvent->addElement($this->adminSidebarHandler->getSideBarMemberMenuElement());
     }
-
 }

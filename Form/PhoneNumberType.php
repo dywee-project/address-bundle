@@ -21,9 +21,7 @@ class PhoneNumberType extends AbstractType
                     'widget' => \Misd\PhoneNumberBundle\Form\Type\PhoneNumberType::WIDGET_COUNTRY_CHOICE,
                     'preferred_country_choices' => array('BE', 'FR'),
                     'label' => 'address.phoneNumber'
-                )
-            )
-        ;
+                ));
     }
     
     /**

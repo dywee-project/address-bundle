@@ -17,7 +17,7 @@ class UserEmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('address',    EmailType::class)
+            ->add('address', EmailType::class)
             //->add('isMain',     CheckboxType::class,    array('required' => false))
         ;
     }

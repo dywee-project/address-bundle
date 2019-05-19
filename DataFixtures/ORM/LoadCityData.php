@@ -24,8 +24,7 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface, C
 
         $references = array();
 
-        foreach($cityList as $rawCity)
-        {
+        foreach ($cityList as $rawCity) {
             $city = new City();
             $city->setName($rawCity->city);
             $city->setZip($rawCity->zip);
@@ -40,14 +39,15 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface, C
 
         $manager->flush();
 
-        foreach($references as $key => $reference)
-        {
-            if(count($references[$key]) > 1) {
+        foreach ($references as $key => $reference) {
+            if (count($references[$key]) > 1) {
                 $this->addReference('city-' . $reference[0]->getZip(), $reference[0]);
-                foreach ($references[$key] as $name => $city)
+                foreach ($references[$key] as $name => $city) {
                     $this->addReference('city-' . $city->getZip() . '-' . strtolower($city->getName()), $city);
+                }
+            } else {
+                $this->addReference('city-' . $reference[0]->getZip(), $reference[0]);
             }
-            else $this->addReference('city-'.$reference[0]->getZip(), $reference[0]);
         }
     }
 
@@ -59,7 +59,7 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface, C
     public function loadJson($fileName)
     {
         $kernel = $this->container->get('kernel');
-        $path = $kernel->locateResource('@DyweeAddressBundle/Resources/public/json/'.$fileName);
+        $path = $kernel->locateResource('@DyweeAddressBundle/Resources/public/json/' . $fileName);
         $json = file_get_contents($path);
 
         return json_decode($json);

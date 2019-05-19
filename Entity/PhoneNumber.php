@@ -103,14 +103,13 @@ class PhoneNumber implements PhoneNumberInterface
      */
     public function setInternationalPhoneNumber()
     {
-        $this->internationalPhoneNumber = '+'.$this->getPhoneNumber()->getCountryCode().$this->getPhoneNumber()->getNationalNumber();
+        $this->internationalPhoneNumber = '+' . $this->getPhoneNumber()->getCountryCode() . $this->getPhoneNumber()->getNationalNumber();
 
         return $this;
     }
 
     public function getInternationalPhoneNumber()
     {
-        return '+'.$this->getPhoneNumber()->getCountryCode().$this->getPhoneNumber()->getNationalNumber();
+        return '+' . $this->getPhoneNumber()->getCountryCode() . $this->getPhoneNumber()->getNationalNumber();
     }
-
 }

@@ -22,8 +22,7 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
     {
         $countryList = $this->loadJson('countries.json');
 
-        foreach($countryList as $countryToAdd)
-        {
+        foreach ($countryList as $countryToAdd) {
             $country = new Country();
             $country->setName($countryToAdd->name->common);
             $country->setIso($countryToAdd->cca2);
@@ -31,7 +30,7 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
             $country->setPhonePrefix(intval($countryToAdd->callingCode));
 
             $manager->persist($country);
-            $this->addReference('country-'.strtolower($country->getIso()), $country);
+            $this->addReference('country-' . strtolower($country->getIso()), $country);
         }
 
         $manager->flush();
@@ -47,7 +46,7 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
     public function loadJson($fileName)
     {
         $kernel = $this->container->get('kernel');
-        $path = $kernel->locateResource('@DyweeAddressBundle/Resources/public/json/'.$fileName);
+        $path = $kernel->locateResource('@DyweeAddressBundle/Resources/public/json/' . $fileName);
         $json = file_get_contents($path);
 
         return json_decode($json);

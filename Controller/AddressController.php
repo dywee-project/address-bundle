@@ -100,8 +100,12 @@ class AddressController extends Controller
                 }
 
                 return $this->render('DyweeAddressBundle:User:edit.html.twig', ['address' => $address, 'form' => $form->createView()]);
-            } else throw new AccessDeniedException('Vous ne pouvez pas editer cette adresse');
-        } else throw $this->createNotFoundException('L\'adresse à éditer est introuvable');
+            } else {
+                throw new AccessDeniedException('Vous ne pouvez pas editer cette adresse');
+            }
+        } else {
+            throw $this->createNotFoundException('L\'adresse à éditer est introuvable');
+        }
     }
 
     /**
@@ -123,7 +127,11 @@ class AddressController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Adresse bien supprimée');
 
                 return $this->redirect($this->generateUrl('address_user_table'));
-            } else throw new AccessDeniedException('Vous ne pouvez pas modifier cette addresse');
-        } else throw $this->createNotFoundException('Cette adresse n\'existe plus');
+            } else {
+                throw new AccessDeniedException('Vous ne pouvez pas modifier cette addresse');
+            }
+        } else {
+            throw $this->createNotFoundException('Cette adresse n\'existe plus');
+        }
     }
 }

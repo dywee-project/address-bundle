@@ -15,9 +15,9 @@ class CountryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',   'text')
-            ->add('iso',    'text')
-            ->add('state',  'choice', array(
+            ->add('name', 'text')
+            ->add('iso', 'text')
+            ->add('state', 'choice', array(
                 0 => 'Désactivé',
                 1 => 'Actif'
             ))
