@@ -10,10 +10,6 @@ namespace Dywee\AddressBundle\Entity;
 
 /**
  * PhoneNumber
- *
- * @ORM\Table(name="phone_number")
- * @ORM\Entity(repositoryClass="Dywee\AddressBundle\Repository\PhoneNumberRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 interface PhoneNumberInterface
 {
