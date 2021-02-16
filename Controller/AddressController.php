@@ -5,12 +5,13 @@ namespace Dywee\AddressBundle\Controller;
 use Dywee\AddressBundle\Form\AddressType;
 use Dywee\AddressBundle\Entity\Address;
 use Dywee\AddressBundle\Form\CompleteAddressType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AddressController extends Controller
+class AddressController extends AbstractController
 {
     /**
      * @return \Symfony\Component\HttpFoundation\Response

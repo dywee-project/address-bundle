@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0",
+    "php": "^8.0",
     "knplabs/knp-paginator-bundle": "^5.4",
     "odolbeau/phone-number-bundle": "^3.3",
     "dywee/core-bundle": "*"

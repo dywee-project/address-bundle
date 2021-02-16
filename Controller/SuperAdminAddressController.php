@@ -4,12 +4,13 @@ namespace Dywee\AddressBundle\Controller;
 
 use Dywee\AddressBundle\Entity\Address;
 use Dywee\AddressBundle\Form\AddressType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class SuperAdminAddressController extends Controller
+class SuperAdminAddressController extends AbstractController
 {
     public function addAction(Request $request)
     {

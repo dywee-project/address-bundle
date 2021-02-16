@@ -4,12 +4,13 @@ namespace Dywee\AddressBundle\Controller;
 
 use Dywee\AddressBundle\Form\AddressType;
 use Dywee\AddressBundle\Entity\Address;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController extends Controller
+class UserController extends AbstractController
 {
     public function tableAction()
     {

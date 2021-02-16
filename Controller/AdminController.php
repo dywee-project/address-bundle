@@ -4,13 +4,14 @@ namespace Dywee\AddressBundle\Controller;
 
 use Dywee\AddressBundle\Entity\Address;
 use Dywee\AddressBundle\Form\CompleteAddressType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends Controller
+class AdminController extends AbstractController
 {
     /**
      * @Route(name="address_admin_table", path="admin/address")
