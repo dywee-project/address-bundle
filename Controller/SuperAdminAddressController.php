@@ -18,8 +18,9 @@ class SuperAdminAddressController extends AbstractController
         $form = $this->get('form.factory')->createBuilder(AddressType::class, $address)
             ->add('valider', SubmitType::class)
             ->getForm();
+        $form->handleRequest($request);
 
-        if ($form->handleRequest($request)->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -33,8 +34,9 @@ class SuperAdminAddressController extends AbstractController
     public function updateAction(Address $address, Request $request)
     {
         $form = $this->get('form.factory')->createBuilder(AddressType::class, $address)->getForm();
+        $form->handleRequest($request);
 
-        if ($form->handleRequest($request)->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -106,8 +108,9 @@ class SuperAdminAddressController extends AbstractController
         if ($request->isXmlHttpRequest()) { // pour vérifier la présence d'une requete Ajax
             $address = new Address();
             $form = $this->get('form.factory')->createBuilder(AddressType::class, $address)->remove('valider')->getForm();
+            $form->handleRequest($request);
 
-            if ($form->handleRequest($request)->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($address);
                 $em->flush();

@@ -4,6 +4,7 @@ namespace Dywee\AddressBundle\Controller;
 
 use Dywee\AddressBundle\Entity\Address;
 use Dywee\AddressBundle\Form\CompleteAddressType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +21,13 @@ class AdminController extends AbstractController
      *
      * @return Response
      */
-    public function tableAction(Request $request)
+    public function tableAction(Request $request, PaginatorInterface $paginator)
     {
         $em = $this->getDoctrine()->getManager();
         $ar = $em->getRepository('DyweeAddressBundle:Address');
 
         $query = $ar->findAll();
 
-        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
@@ -49,8 +49,9 @@ class AdminController extends AbstractController
         $address = new Address();
 
         $form = $this->get('form.factory')->create(CompleteAddressType::class, $address);
-
-        if ($form->handleRequest($request)->isValid()) {
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($address);
@@ -91,8 +92,9 @@ class AdminController extends AbstractController
     public function updateAction(Address $address, Request $request)
     {
         $form = $this->get('form.factory')->create(CompleteAddressType::class, $address);
-
-        if ($form->handleRequest($request)->isValid()) {
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($address);
             $em->flush();
@@ -103,7 +105,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render(
-            'DyweeAddressBundle:Admin:edit.html.twig',
+            '@DyweeAddressBundle/Admin/edit.html.twig',
             ['address' => $address, 'form' => $form->createView()]
         );
     }

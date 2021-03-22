@@ -47,8 +47,9 @@ class UserController extends AbstractController
 
         $form->remove('email');
         $form->add('email');
+        $form->handleRequest($request);
 
-        if ($form->handleRequest($request)->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($address);
             $em->flush();
 
@@ -68,8 +69,9 @@ class UserController extends AbstractController
         if ($address != null) {
             if ($address->getUser() == $this->getUser()) {
                 $form = $this->get('form.factory')->create(new AddressType(), $address);
+                $form->handleRequest($request);
 
-                if ($form->handleRequest($request)->isValid()) {
+                if ($form->isSubmitted() && $form->isValid()) {
                     $em->persist($address);
                     $em->flush();
 
