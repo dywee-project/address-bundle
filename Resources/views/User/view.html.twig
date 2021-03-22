@@ -1,4 +1,4 @@
-{% extends "DyweeAddressBundle::userAdmin.html.twig" %}
+{% extends '@DyweeAddressBundle/userAdmin.html.twig' %}
 
 {% block body %}
 
@@ -14,7 +14,7 @@
                     <h2 class="box-title">Adresse</h2>
                 </div>
                 <div class="box-body">
-                    {% include 'DyweeAddressBundle:Address:view_wrapped.html.twig' %}
+                    {% include '@DyweeAddressBundle/Address/view_wrapped.html.twig' %}
                     <a href="{{ path('address_admin_update', {id: address.id}) }}" class="btn btn-default btn-block"><i
                                 class="fa fa-pencil"></i> Modifier</a>
                 </div>

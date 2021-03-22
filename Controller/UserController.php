@@ -21,7 +21,7 @@ class UserController extends AbstractController
             ['id' => 'desc']
         );
 
-        return $this->render('DyweeAddressBundle:User:table.html.twig', ['addressList' => $as]);
+        return $this->render('@DyweeAddressBundle/User/table.html.twig', ['addressList' => $as]);
     }
 
     public function viewAction($id)
@@ -30,7 +30,7 @@ class UserController extends AbstractController
         $address = $ar->findOneById($id);
 
         if ($address->getUser() == $this->getUser()) {
-            return $this->render('DyweeAddressBundle:User:view.html.twig', ['address' => $address]);
+            return $this->render('@DyweeAddressBundle/User/view.html.twig', ['address' => $address]);
         } else {
             throw new AccessDeniedException('Vous ne pouvez pas voir cette addresse');
         }
@@ -55,7 +55,7 @@ class UserController extends AbstractController
             return $this->redirect($this->generateUrl('dywee_address_user_table'));
         }
 
-        return $this->render('DyweeAddressBundle:User:add.html.twig', ['form' => $form->createView()]);
+        return $this->render('@DyweeAddressBundle/User/add.html.twig', ['form' => $form->createView()]);
     }
 
     public function updateAction($id, Request $request)
@@ -78,7 +78,7 @@ class UserController extends AbstractController
                     return $this->redirect($this->generateUrl('dywee_address_user_table'));
                 }
 
-                return $this->render('DyweeAddressBundle:User:edit.html.twig', ['address' => $address, 'form' => $form->createView()]);
+                return $this->render('@DyweeAddressBundle/User/edit.html.twig', ['address' => $address, 'form' => $form->createView()]);
             } else {
                 throw new AccessDeniedException('Vous ne pouvez pas editer cette adresse');
             }

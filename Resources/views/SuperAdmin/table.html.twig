@@ -1,6 +1,6 @@
 {# Dywee\AddressBundle:SuperAdmin:table.html.twig #}
 
-{%  extends "DyweeAddressBundle::admin.html.twig" %}
+{% extends '@DyweeAddressBundle/admin.html.twig' %}
 
 {% block metaTitle %}
     Liste des adresses {{ parent() }}
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="box box-default">
-                {% include "DyweeAddressBundle:SuperAdmin:miniTable.html.twig" %}
+                {% include "@DyweeAddressBundle/SuperAdmin/miniTable.html.twig" %}
             </div>
         </div>
 

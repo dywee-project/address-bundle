@@ -34,7 +34,7 @@ class AdminController extends AbstractController
             25/*limit per page*/
         );
 
-        return $this->render('DyweeAddressBundle:Admin:table.html.twig', ['pagination' => $pagination]);
+        return $this->render('@DyweeAddressBundle/Admin/table.html.twig', ['pagination' => $pagination]);
     }
 
     /**
@@ -59,7 +59,7 @@ class AdminController extends AbstractController
             return $this->redirect($this->generateUrl('address_admin_table'));
         }
 
-        return $this->render('DyweeAddressBundle:Admin:add.html.twig', ['form' => $form->createView()]);
+        return $this->render('@DyweeAddressBundle/Admin/add.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -77,7 +77,7 @@ class AdminController extends AbstractController
         //Créer une fonction dans le repository
         $orders = array_merge($or->findByBillingAddress($address), $or->findByShippingAddress($address));
 
-        return $this->render('DyweeAddressBundle:Admin:view.html.twig', ['address' => $address, 'orders' => $orders]);
+        return $this->render('@DyweeAddressBundle/Admin/view.html.twig', ['address' => $address, 'orders' => $orders]);
     }
 
     /**

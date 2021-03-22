@@ -1,6 +1,6 @@
 {# Dywee\AddressBundle:SuperAdmin:add.html.twig #}
 
-{%  extends "DyweeAddressBundle::admin.html.twig" %}
+{% extends '@DyweeAddressBundle/admin.html.twig' %}
 
 {% block metaTitle %}
     Modification d'une adresse {{ parent() }}
@@ -9,5 +9,5 @@
 {% block body %}
     <h1>Modification d'une adresse</h1>
 
-    {% include "DyweeAddressBundle:SuperAdmin:form.html.twig" %}
+    {% include "@DyweeAddressBundle/SuperAdmin/form.html.twig" %}
 {% endblock %}

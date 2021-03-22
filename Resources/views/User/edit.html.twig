@@ -1,4 +1,4 @@
-{% extends "DyweeAddressBundle::userAdmin.html.twig" %}
+{% extends '@DyweeAddressBundle/userAdmin.html.twig' %}
 
 {% block metaTitle %}
     Edition d'une adresse {{ parent() }}
@@ -12,7 +12,7 @@
                     <h2 class="panel-title">Edition d'une adresse</h2>
                 </div>
                 <div class="panel-body">
-                    {% include "DyweeAddressBundle:Form:address_user.html.twig" %}
+                    {% include "@DyweeAddressBundle/Form/address_user.html.twig" %}
                 </div>
             </div>
 

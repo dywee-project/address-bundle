@@ -27,7 +27,7 @@ class SuperAdminAddressController extends AbstractController
             $request->getSession()->getFlashBag()->set('success', 'Adresse correctement modifiée');
             return $this->redirect($this->generateUrl('superAdmin_address_table'));
         }
-        return $this->render('DyweeAddressBundle:SuperAdmin:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('@DyweeAddressBundle/SuperAdmin/edit.html.twig', array('form' => $form->createView()));
     }
 
     public function updateAction(Address $address, Request $request)
@@ -42,7 +42,7 @@ class SuperAdminAddressController extends AbstractController
             $request->getSession()->getFlashBag()->set('success', 'Adresse correctement modifiée');
             return $this->redirect($this->generateUrl('superAdmin_address_table'));
         }
-        return $this->render('DyweeAddressBundle:SuperAdmin:edit.html.twig', array('form' => $form->createView()));
+        return $this->render('@DyweeAddressBundle/SuperAdmin/edit.html.twig', array('form' => $form->createView()));
     }
 
     public function removeAction(Address $address)
